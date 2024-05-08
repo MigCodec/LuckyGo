@@ -8,3 +8,7 @@ Route::get('/', function () {
 Route::get('/register', function () {
     return view('auth.register');
 });
+Route::get('/logg', function () {
+    return view('auth.logg');
+});
+Route::post('logg',[AuthController::class,'logg'])->name('logg');
