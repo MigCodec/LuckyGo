@@ -13,7 +13,7 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-class AuthController extends Controller
+/*class AuthController extends Controller
 {
     public function logg(Request $request)
     {
@@ -41,3 +41,4 @@ class AuthController extends Controller
         ]);
     }
 }
+*/
