@@ -16,12 +16,9 @@ class AuthController extends Controller
         return view("auth.login");
     }
     public function registerForm(){
-        return view("auth.register");
-    }
-    public function register(Request $request){
-        $validated = $request->validate([
-            "name"=>['required'],
-            "email"=>['required','email']
-        ]);
+        if(auth()->check()){
+            return view("auth.register");
+        }
+        return redirect()->back()->with("message","Debes logearte primero");
     }
 }

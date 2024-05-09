@@ -28,7 +28,7 @@
 </head>
 <body>
 <div class="container">
-        <img src="https://lh3.googleusercontent.com/pw/AP1GczNEO8J7m5Wsj55kpXSXsbi8z5UIFBfZpbaNE-2_IpmrG5RkcYes4WSt8zAPddfG0tutaM9V0TRo3vqk6MnxMzBgBQqU7iW0y6k_iLKhJmm6W-4c7BsBhbNQOGWgfpbjNxP64gy-3wH27WUmbe6njbnoD5lQ1TUyAEE9KM2gOhEa5sfJZ0goWMTGLlNyOwlJ-C5ytqlgdAF_OVL-cmDeccYiCFq-_Wy4XN0sPvIccwRfjZ2FvcYD-FsbOjz--pug591ZFN2EHxeo6J1LRxtliX0cFEQK81JT-HjzUEHLz1U0Ok7G98TwmjMMofx-KwkU_uq2LNwkpk01hle-mDTElc_2KlefykYkvon52MsRYE_PdK2ygo8CqE1TaaruhWcjyG5mBH41uvSm0qS63HEZX_oP7VQKFRACKaLd8wX4D84V5p5E2cqwFDoiTg0GTXCfiK-Z57Ws1M0JBwjWqIOUMAEmIqZKAhQ4FyADboxE0itV-u24teYrF-mlh3DsNjrgxJ7QMqXioAr5bQ1HlZq6zWYRMsxTFAtl6uyuF3e_5QaEy3ye0dEwAvMuPdpAPjDOIdjzs6EQinTEvF53_BJsBnRnC2GXnIchR0f5HWsKvG0Rr_CzJDSJ3dB8n2UhRBlL1wGxM0-1jQRwtCneADbv4aO2BqpTk4hdzMThwq2NmOvJ5cadVosEsQ3wUk3hzaE6FKn1C7RiVJ2IyJpVPneP93ZxnDMdaqBFVcPyiXKQARMDmujMYbUqOZWneHGIuVT4gXsHWbPiYZOAE5U5UBGmujAlaNqQhNowzpQfqJanrQtgm0ZEzl_OPZSBaZKg3l32w91K-tWm1Kslv_gwMb_zzonvGesvskznMtFIsu7DkwdjxVbbDzZJHgelpmdw-Ic6YfM4SGGA_GMCK2d_FAp4K_ESOdksBJ1JKvfXvqTyo4-5Cf2rPtabG3OyZtIC8jw0ye6H3d620e5QUXtMIGoQj3HNn9EQQEe3NcEM3k5tMvFbOqR1Z41nScuPHPQxj8jVe0tvO4BdinA9ffXgRsmo_mJXx1-uuKXCo2dtwSBbNseN9f3R2g7yUgbxPk61WhWAAiFpmmWolA=w879-h879-s-no-gm?authuser=1" class="logo" alt="Lucky Go Logo">
+        <img src="luckygo_logo.png" class="logo" alt="Lucky Go Logo">
         <style>
           .logo-container{
             text-align: center;
