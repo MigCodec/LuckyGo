@@ -39,7 +39,7 @@ class SorterController extends Controller
             'age.between' => 'La edad del sorteador no puede ser inferior a 18 y mayor a 65',
             'email.required' => 'Debe ingresar el correo electrónico del sorteador',
             'email.unique' => 'El correo electrónico ingresado ya existe en el sistema',
-            'email.email' => 'usuario no registrado o contraseña incorrecta',
+            'email.email' => 'Debe ingresar un correo válido',
         ];
 
         $validated = $request->validate([
