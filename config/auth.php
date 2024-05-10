@@ -45,6 +45,11 @@ return [
             'driver' => 'session',
             'provider' => 'admin_users',
         ],
+        'sorter' => [
+            'driver' => 'session',
+            'provider' => 'sorter_users',
+        ],
+        
     ],
 
     /*
@@ -72,6 +77,10 @@ return [
         'admin_users' => [
             'driver' => 'eloquent',
             'model' => App\Models\Administrator::class,
+        ],
+        'sorter_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Sorter::class,
         ],
 
         // 'users' => [

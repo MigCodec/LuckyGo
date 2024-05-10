@@ -42,7 +42,7 @@ class SorterController extends Controller
         $password = $password_1digit . $password_remain; 
         DB::table('sorters')->insert([
             'name'=>$request->name,
-            'mail'=>$request->email,
+            'email'=>$request->email,
             'age'=>$request->age,
             'status'=>0,
             'password'=>Hash::make($password)

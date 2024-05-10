@@ -54,7 +54,7 @@ class AuthController extends Controller
 
 
     public function login(Request $request){
-        if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => 
+        if (Auth::guard('sorter')->attempt(['email' => $request->email, 'password' => 
              $request->password], $request->remember)) {
             return redirect()->back()->with("login_successfuly","Se inicio sesión correctamente");
         }
@@ -77,7 +77,7 @@ class AuthController extends Controller
         if(auth()->guard("admin")->check()){
             return view("auth.register");
         }
-        if(auth()->guard("web")->check()){
+        if(auth()->guard("sorter")->check()){
             return redirect()->back()->with("message","No esta permitido con esta cuenta");
         }
         return redirect()->back()->with("message","Debes logearte primero");
