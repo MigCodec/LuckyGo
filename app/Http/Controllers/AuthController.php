@@ -54,6 +54,17 @@ class AuthController extends Controller
 
 
     public function login(Request $request){
+
+        $messages=[
+            'email.required' => 'debe ingresar su correo electrónico para iniciar sesión',
+            'password.required' => 'debe ingresar su contraseña para iniciar sesión'
+        ];
+
+        $validated= $request->validate([
+            'email'=>['required'],
+            'password'=>['required']
+        ],$messages);
+
         if (Auth::guard('sorter')->attempt(['email' => $request->email, 'password' => 
              $request->password], $request->remember)) {
             return redirect()->back()->with("login_successfuly","Se inicio sesión correctamente");
@@ -62,7 +73,7 @@ class AuthController extends Controller
              $request->password], $request->remember)) {
             return redirect()->intended(route('registerForm'));
         }
-        return redirect()->back()->with("message","Credenciales incorrectas");
+        return redirect()->back()->with("message","usuario no registrado o contraseña incorrecta");
         /*
         if(auth()->attempt($request->only('email','password'),$request->remember)){
             return redirect()->route("registerForm");

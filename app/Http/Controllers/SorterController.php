@@ -32,11 +32,21 @@ class SorterController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'name.required' => 'Debe ingresar el campo nombre del sorteador',
+            'age.required' => 'Debe ingresar la edad del sorteador',
+            'age.integer' => 'La edad del sorteador debe ser numérica',
+            'age.between' => 'La edad del sorteador no puede ser inferior a 18 y mayor a 65',
+            'mail.required' => 'Debe ingresar el correo electrónico del sorteador',
+            'mail.unique' => 'El correo electrónico ingresado ya existe en el sistema',
+        ];
+
         $validated = $request->validate([
             "name"=>['required'],
-            "age"=>['required'],
-            "email"=>['required','email']
-        ]);
+            "age"=>['required', 'integer', 'between:18,65'],
+            "email"=>['required','email', 'unique:sorters']
+        ],$messages);
+
         $password_1digit = rand(1, 9);
         $password_remain = rand(10000, 99999);
         $password = $password_1digit . $password_remain; 
