@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Sorter;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 class SorterController extends Controller
 {
     /**
@@ -28,6 +29,20 @@ class SorterController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            "name"=>['required'],
+            "age"=>['required'],
+            "email"=>['required','email']
+        ]);
+        DB::table('sorters')->insert([
+            'name'=>$request->name,
+            'mail'=>$request->email,
+            'age'=>$request->age,
+            'status'=>0,
+            'password'=>Hash::make('password')
+        ]);
+        mail($request->email,"test","this is a test message");
+        return redirect()->back()->with("message","sorteador creado!");
         //
     }
 
