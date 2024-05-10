@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sorter;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
@@ -53,19 +54,34 @@ class AuthController extends Controller
 
 
     public function login(Request $request){
+        if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => 
+             $request->password], $request->remember)) {
+            return redirect()->back()->with("login_successfuly","Se inicio sesión correctamente");
+        }
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => 
+             $request->password], $request->remember)) {
+            return redirect()->intended(route('registerForm'));
+        }
+        return redirect()->back()->with("message","Credenciales incorrectas");
+        /*
         if(auth()->attempt($request->only('email','password'),$request->remember)){
             return redirect()->route("registerForm");
         }
         return redirect()->back()->with("message","Credenciales incorrectas");
+        */
     }
     public function loginForm(){
         return view("auth.login");
     }
     public function registerForm(){
-        if(auth()->check()){
+        if(auth()->guard("admin")->check()){
             return view("auth.register");
         }
+        if(auth()->guard("web")->check()){
+            return redirect()->back()->with("message","No esta permitido con esta cuenta");
+        }
         return redirect()->back()->with("message","Debes logearte primero");
-    }
+    } 
+
 }
 

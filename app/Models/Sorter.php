@@ -11,7 +11,7 @@ class Sorter extends Model
 
     protected $fillable = [
         'status',
-        'mail',
+        'email',
         'password',
         'age',
         'name',

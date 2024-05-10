@@ -60,6 +60,9 @@
                 </p>
                 <p style="background-color: #f56558; color: #fff; margin-top: 0.5rem; border-radius: 0.375rem; font-size: 1rem; text-align: center; padding: 0.25rem;">{{session('message')}}</p>
                 @endif
+                @if(session('login_successfuly'))
+                <p style="background-color: #2ECC71; color: #fff; margin-top: 0.5rem; border-radius: 0.375rem; font-size: 1rem; text-align: center; padding: 0.25rem;">{{session('login_successfuly')}}</p>
+                @endif
             </div>
                 
             </div>

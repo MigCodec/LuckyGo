@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sorters', function (Blueprint $table) {
             $table->id();
             $table->integer('status');
-            $table->string('mail')->unique();
+            $table->string('email')->unique();
             $table->string('password');
             $table->integer('age');
             $table->string('name');

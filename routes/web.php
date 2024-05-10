@@ -21,3 +21,4 @@ Route::get('login',[AuthController::class,'loginForm'])->name('loginForm');
 Route::post('login',[AuthController::class,'login'])->name('login');
 Route::get('register',[AuthController::class,'registerForm'])->name('registerForm');
 Route::post('register',[SorterController::class,'store'])->name('register');
+Route::middleware(['auth:user,admin', 'verified']);
