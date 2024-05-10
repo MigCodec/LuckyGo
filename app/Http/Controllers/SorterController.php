@@ -28,10 +28,13 @@ class SorterController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Stores a new sorter record in the database and sends an email notification with the password.
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
+        //Define user error messages for field validation
         $messages = [
             'name.required' => 'Debe ingresar el campo nombre del sorteador',
             'age.required' => 'Debe ingresar la edad del sorteador',
@@ -42,15 +45,19 @@ class SorterController extends Controller
             'email.email' => 'Debe ingresar un correo válido',
         ];
 
+        //validate request data
         $validated = $request->validate([
             "name"=>['required'],
             "age"=>['required', 'integer', 'between:18,65'],
             "email"=>['required','email', 'unique:sorters']
         ],$messages);
 
+         // Generate a random password
         $password_1digit = rand(1, 9);
         $password_remain = rand(10000, 99999);
         $password = $password_1digit . $password_remain; 
+
+        // Store the new sorter record in the database
         DB::table('sorters')->insert([
             'name'=>$request->name,
             'email'=>$request->email,
@@ -58,12 +65,13 @@ class SorterController extends Controller
             'status'=>0,
             'password'=>Hash::make($password)
         ]);
-        //mail($request->email,"test","this is a test message");
+
+        // Send an email notification with the generated password
         Mail::raw("Su contraseña es: $password", function ($message) use ($request){
             $message->to($request->email)->subject('Contraseña Lucky Go');
         });
+        // Redirect the user back with a success message
         return redirect()->back()->with("message","sorteador creado!");
-        //
     }
 
     /**
