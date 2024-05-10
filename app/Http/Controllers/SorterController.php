@@ -65,13 +65,16 @@ class SorterController extends Controller
             'status'=>0,
             'password'=>Hash::make($password)
         ]);
-
-        // Send an email notification with the generated password
-        Mail::raw("Su contraseña es: $password", function ($message) use ($request){
+        try{
+            // Send an email notification with the generated password
+            Mail::raw("Su contraseña es: $password", function ($message) use ($request){
             $message->to($request->email)->subject('Contraseña Lucky Go');
+            // Redirect the user back with a success message
+            return redirect()->back()->with("message","sorteador creado!");
         });
-        // Redirect the user back with a success message
-        return redirect()->back()->with("message","sorteador creado!");
+        }catch(Exception $exception){
+            return redirect()->back()->with("message_conection_error","Error de conexión");
+        }
     }
 
     /**
