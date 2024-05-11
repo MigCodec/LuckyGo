@@ -57,24 +57,25 @@ class SorterController extends Controller
         $password_remain = rand(10000, 99999);
         $password = $password_1digit . $password_remain; 
 
-        // Store the new sorter record in the database
-        DB::table('sorters')->insert([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'age'=>$request->age,
-            'status'=>0,
-            'password'=>Hash::make($password)
-        ]);
         try{
             // Send an email notification with the generated password
             Mail::raw("Su contraseña es: $password", function ($message) use ($request){
             $message->to($request->email)->subject('Contraseña Lucky Go');
-            // Redirect the user back with a success message
-            return redirect()->back()->with("message","sorteador creado!");
+            
         });
         }catch(Exception $exception){
             return redirect()->back()->with("message_conection_error","Error de conexión");
         }
+        // Store the new sorter record in the database
+        DB::table('sorters')->insert([
+                    'name'=>$request->name,
+                    'email'=>$request->email,
+                    'age'=>$request->age,
+                    'status'=>0,
+                    'password'=>Hash::make($password)
+                ]);
+        // Redirect the user back with a success message
+        return redirect()->back()->with("message","sorteador creado!");
     }
 
     /**

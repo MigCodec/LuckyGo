@@ -65,6 +65,9 @@
             <!-- Submit Button -->
             <div style="display: flex; justify-content: center;">
                 <button type="submit" style="background-color: #3B82F6; color: #fff; font-weight: 500; border-radius: 0.375rem; font-size: 0.875rem; text-align: center; padding: 0.625rem 1.25rem; width: 100%; max-width: 12rem;">Registrar</button>
+                @if(session('message_conection_error'))
+                <p style="background-color: #f56558; color: #fff; border-radius: 0.375rem; font-size: 1rem; padding: 0.25rem;">{{session('message_conection_error')}}</p>
+                @endif
             </div>
         </form>
     </div>    
