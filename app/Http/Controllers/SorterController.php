@@ -63,7 +63,7 @@ class SorterController extends Controller
             $message->to($request->email)->subject('Contraseña Lucky Go');
             
         });
-        }catch(Exception $exception){
+        }catch(\Exception $exception){
             return redirect()->back()->with("message_conection_error","Error de conexión");
         }
         // Store the new sorter record in the database
