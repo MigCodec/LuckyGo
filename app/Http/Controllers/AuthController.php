@@ -97,7 +97,7 @@ class AuthController extends Controller
         //Validate the admin user
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => 
              $request->password], $request->remember)) {
-            return redirect()->intended(route('registerForm'));
+            return redirect()->intended(route('homeForm'));
         }
         return redirect()->back()->with("message","usuario no registrado o contraseña incorrecta");
         /*

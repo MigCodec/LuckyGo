@@ -83,7 +83,11 @@ class SorterController extends Controller
      */
     public function show(Sorter $sorter)
     {
-        //
+        $sorters = Sorter::all();
+        return $sorters;
+    }
+    public function showForm(){
+        return view("sorter.sorter");
     }
 
     /**
