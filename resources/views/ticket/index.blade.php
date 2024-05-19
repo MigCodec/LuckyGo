@@ -34,5 +34,11 @@
         {{$message}}
         @enderror
     </form>
+    @if(isset($success))
+    <h1>Compra realizada exitosamente!</h1>
+    Tu numero de billete es el {{$ticket_code}}
+    Fecha {{$date}}
+    Juega con responsabilidad en LuckyGo
+    @endif
 </div>
 @endsection

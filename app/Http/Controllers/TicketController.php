@@ -26,10 +26,11 @@ class TicketController extends Controller
         //
     }
     public function pre_confirmation(StoreTicketRequest $request){
-        $price = $request->im_felling_lucky ? 3000 : 2000;
+
+        $price = $request->im_feeling_lucky ? 3000 : 2000;
         return view('ticket.confirmation', [
             'numbers' => json_encode($request->numbers),
-            'im_felling_lucky'=>$request->im_felling_lucky,
+            'im_feeling_lucky'=>$request->im_feeling_lucky?true:false,
             'price'=> $price,
             'date' => Carbon::now()->format('d-m-Y H:i:s'),
         ]);
@@ -43,8 +44,9 @@ class TicketController extends Controller
         $code_number = Ticket::max('code');
         if($code_number == null){
             $code_number = "000";
+        }else{
+            $code_number = intval($code_number)+1;
         }
-        $code_number = intval($code_number)+1;
         $code_number =  strval($code_number);
         for($i=0;$i<strlen($code_number);$i++)
         {
@@ -59,7 +61,7 @@ class TicketController extends Controller
             'price' => $request->price,
             'code'=> $code_number,
         ]);
-        return view('ticket.index')->with("success","ticket generado")->with("code",$code_number);
+        return view('ticket.index')->with("success","ticket generado")->with("ticket_code","LG".$code_number)->with("date", now()->format("d/m/Y H:i:s"));
     }
 
     /**
