@@ -17,7 +17,8 @@ class SorterController extends Controller
     public function index()
     {
         //
-        $sorters = Sorter::all();
+        $sorters = Sorter::withCount('tickets')->get();
+        
         return view("sorter.index",["sorters"=> $sorters]);
     }
 
@@ -119,8 +120,8 @@ class SorterController extends Controller
         if(auth()->guard("admin")->check()){
             $sorter->status = !$sorter->status;
             $sorter->save();
-            return redirect()->route('sorter.index')->with('success', 'Estado de Sorteador Actualizado.');
+            return redirect()->route('sorters.index')->with('success', 'Estado de Sorteador Actualizado.');
         }
-        return redirect()->route('sorter.index')->with('auth_failed', 'No estas autorizado a utilizar esta funcion');
+        return redirect()->route('sorters.index')->with('auth_failed', 'No estas autorizado a utilizar esta funcion');
     }
 }

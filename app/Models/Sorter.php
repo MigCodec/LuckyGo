@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Ticket;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class Sorter extends Authenticatable
 {
@@ -44,5 +45,8 @@ class Sorter extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function tickets(){
+        return $this->hasmany(Ticket::class);
     }
 }

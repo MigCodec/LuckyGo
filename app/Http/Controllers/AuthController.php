@@ -10,19 +10,7 @@ use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
-    /**
-     * Register a new sorter in the system.
-     * 
-     * It performs data validation, generates a random password, creates a new
-     * sorter record in the database, sends an email with the password, and attempts
-     * to authenticate the user.
-     * 
-     * @param   \Illuminate\Http\Request  $request 
-     * @return  \Illuminate\Http\RedirectResponse
-     */
-    public function sorter(Request $request)
-    {
-    }
+
 
 
     /**
@@ -50,7 +38,7 @@ class AuthController extends Controller
         // Validate the sorter user
         if (Auth::guard('sorter')->attempt(['email' => $request->email, 'password' => 
              $request->password], $request->remember)) {
-            return redirect()->back()->with("login_successfuly","Se inicio sesión correctamente");
+                return redirect()->intended(route('homeForm'));
         }
         //Validate the admin user
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => 
@@ -88,6 +76,11 @@ class AuthController extends Controller
         //If the user is not authenticated, redirect back with a message.
         return redirect()->back()->with("message","Debes logearte primero");
     } 
+    public function logout(){
+        Auth::guard("admin")->logout();
+        Auth::guard("sorter")->logout();
+        return redirect()->route("login");
+    }
 
 }
 

@@ -4,25 +4,28 @@
     <table>
             <tr>
                 <th>
-                    ID
+                    #
                 </th>
                 <th>
-                    Email
+                    Nombre del sorteador
                 </th>
                 <th>
-                    Nombre
+                    Correo electronico
                 </th>
                 <th>
                     Edad
                 </th>
                 <th>
-                   Status
+                    Cantidad de sorteos
+                 </th>
+                <th>
+                   Estado
                 </th>
             </tr>
-            @foreach($sorters as $sorter)
+            @foreach($sorters as $value=>$sorter)
             <tr>
                 <td>
-                    {{$sorter->id}}
+                    {{$value+1}}
                 </td>
                 <td>
                     {{$sorter->email}}
@@ -34,10 +37,13 @@
                     {{$sorter->age}}
                 </td>
                 <td>
+                    {{$sorter->tickets_count}}
+                </td>
+                <td>
                     <form action="{{ route('sorters.toggle', $sorter->id) }}" method="POST">
                         @csrf
                         <button type="submit">
-                            {{ $sorter->status ? 'Desactivar' : 'Activar' }}
+                            {{ $sorter->status ? 'Habilitado' : 'Desabilitado' }}
                         </button>
                     </form>
                 </td>
