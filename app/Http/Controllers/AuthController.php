@@ -22,48 +22,6 @@ class AuthController extends Controller
      */
     public function sorter(Request $request)
     {
-        $messages = [
-            'name.required' => 'Debe ingresar el campo nombre del sorteador',
-            'age.required' => 'Debe ingresar la edad del sorteador',
-            'age.integer' => 'La edad del sorteador debe ser numérica',
-            'age.between' => 'La edad del sorteador no puede ser inferior a 18 y mayor a 65',
-            'mail.required' => 'Debe ingresar el correo electrónico del sorteador',
-            'mail.unique' => 'El correo electrónico ingresado ya existe en el sistema',
-        ];
-
-         // Validate the request data
-        $validated= $request->validate([
-            'name'=>['required'],
-            'age' =>['required', 'integer', 'between:18,65'],
-            'mail'=>['required', 'unique:Sorters']
-        ],$messages);
-
-         // Generate a random 6-digit password, excluding leading zeros
-        do{
-            $password = Str::randomNumber(6, true);
-        }while(
-            $password[0] === '0'
-        );
-
-         // Create a new sorter record in the database
-        Sorter::create([
-            'name' => $request->name,
-            'mail' => $request->mail,
-            'age' => $request->age,
-            'password' => $password,
-            'status' => 1,
-        ]);
-
-         // Send an email with the generated password
-        Mail::raw("Su contraseña es: $password", function ($message) use ($request){
-            $message->to($request->mail)->subject('Contraseña Lucky Go');
-        });
-
-        // Attempt to authenticate the user
-        auth()->attempt([
-            'mail' => $request->mail,
-            'password' => $password,
-        ]);
     }
 
 

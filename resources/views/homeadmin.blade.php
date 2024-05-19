@@ -1,1 +1,1 @@
-@include('includes.navbar')
+@extends('includes.navbar')

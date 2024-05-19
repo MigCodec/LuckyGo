@@ -17,6 +17,8 @@ class SorterController extends Controller
     public function index()
     {
         //
+        $sorters = Sorter::all();
+        return view("sorter.index",["sorters"=> $sorters]);
     }
 
     /**
@@ -112,5 +114,13 @@ class SorterController extends Controller
     public function destroy(Sorter $sorter)
     {
         //
+    }
+    public function toggle(Sorter $sorter){
+        if(auth()->guard("admin")->check()){
+            $sorter->status = !$sorter->status;
+            $sorter->save();
+            return redirect()->route('sorter.index')->with('success', 'Estado de Sorteador Actualizado.');
+        }
+        return redirect()->route('sorter.index')->with('auth_failed', 'No estas autorizado a utilizar esta funcion');
     }
 }

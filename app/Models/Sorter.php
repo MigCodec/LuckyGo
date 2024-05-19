@@ -20,6 +20,7 @@ class Sorter extends Authenticatable
         'age',
         'email',
         'password',
+        'status',
     ];
 
     /**
