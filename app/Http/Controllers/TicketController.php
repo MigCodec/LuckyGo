@@ -60,6 +60,7 @@ class TicketController extends Controller
             'im_feeling_lucky' => $request->im_feeling_lucky?true:false,
             'price' => $request->price,
             'code'=> $code_number,
+            'date'=>now(),
         ]);
         return view('ticket.index')->with("success","ticket generado")->with("ticket_code","LG".$code_number)->with("date", now()->format("d/m/Y H:i:s"));
     }

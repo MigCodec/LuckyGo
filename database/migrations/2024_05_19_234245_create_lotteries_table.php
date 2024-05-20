@@ -11,16 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('lotteries', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('code')->unique(); 
-            $table->boolean('im_feeling_lucky')->default(false);
-            $table->json('numbers'); 
-            $table->integer('price'); 
             $table->date('date');
-            $table->unsignedBigInteger('sorter_id');
-            $table->foreign('sorter_id')->references('id')->on('sorters');
+            $table->integer('state');
         });
     }
 
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('lotteries');
     }
 };

@@ -3,6 +3,7 @@
     @if(auth()->guard("admin")->check())
     <li><a href="{{route("register")}}">Registrar Sorteador</a></li>
     <li><a href="{{route("sorters.index")}}">Sorteador</a></li>
+    <li><a href="{{route("lotterys.index")}}">Sorteo</a></li>
     @endif
     @if(auth()->guard("sorter")->check())
     <li><a href="{{route("tickets.index")}}">Comprar billete de loteria</a></li>
