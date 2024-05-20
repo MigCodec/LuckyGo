@@ -28,10 +28,10 @@
                     {{$value+1}}
                 </td>
                 <td>
-                    {{$sorter->email}}
+                    {{$sorter->name}}
                 </td>
                 <td>
-                    {{$sorter->name}}
+                    {{$sorter->email}}
                 </td>
                 <td>
                     {{$sorter->age}}
