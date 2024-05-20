@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use App\Models\Lottery;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreLotteryRequest;
 use App\Http\Requests\UpdateLotteryRequest;
 
@@ -14,10 +15,26 @@ class LotteryController extends Controller
      */
     public function index()
     {
-        $dates = $this->getMondayAndSundayOfThisWeek();
-        $lottery = Lottery::All();
-        $test = Ticket::All()->where('');
-        return view("lottery.index");
+        $lotteries = Lottery::select(
+            'lotteries.id',
+            'lotteries.date',
+            DB::raw('IFNULL(COUNT(tl.id),0)+IFNULL(COUNT(tn.id),0) AS tickets_count'),
+            DB::raw('IFNULL(SUM(tn.price),0) AS sum_normal_ticket'),
+            DB::raw('IFNULL(SUM(tl.price),0) AS sum_lucky_ticket'),
+            DB::raw('IFNULL(SUM(tn.price),0) + IFNULL(SUM(tl.price),0) AS total'),
+            DB::raw('IFNULL(a.id," ") AS register_by'),
+            DB::raw('IF(NOW()<lotteries.date,0,IF(a.id IS NULL,1,0)) AS state'),
+        )->leftjoin('tickets as tn', function ($join) {
+            $join->on('lotteries.id', '=', 'tn.lottery_id')
+                 ->where('tn.im_feeling_lucky', '=', 0);
+        })->leftjoin('tickets as tl', function ($join) {
+            $join->on('lotteries.id', '=', 'tl.lottery_id')
+                 ->where('tl.im_feeling_lucky', '=', 1);
+        })->leftjoin('administrators as a',function($join){
+            $join->on('lotteries.admin_id','=','a.id');
+        })->groupBy('lotteries.id','lotteries.date','lotteries.state','a.id')->get();
+
+        return view("lottery.index",["lotteries"=> $lotteries]);
     }
 
     /**
@@ -67,7 +84,7 @@ class LotteryController extends Controller
     {
         //
     }
-    private function getMondayAndSundayOfThisWeek() {
+    public static function getMondayAndSundayOfThisWeek() {
         // Set the timezone to avoid discrepancies
         date_default_timezone_set('America/New_York');
     

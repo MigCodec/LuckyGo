@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\Lottery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Requests\StoreTicketRequest;
@@ -54,15 +55,25 @@ class TicketController extends Controller
                 $code_number[$i] = "1";
             }
         }
+        $now = now();
         $sorter = auth()->guard("sorter")->user();
+        $restrict_dates = LotteryController::getMondayAndSundayOfThisWeek();
+        $lottery = Lottery::where('date',$restrict_dates['sunday'])->first();
+        if($lottery==null){
+            $lottery = Lottery::firstOrCreate([
+                'date'=>$restrict_dates['sunday'],
+                'state'=>0,
+            ]);
+        }
         $ticket = $sorter->tickets()->create([
             'numbers' => json_decode($request->numbers),
             'im_feeling_lucky' => $request->im_feeling_lucky?true:false,
             'price' => $request->price,
             'code'=> $code_number,
-            'date'=>now(),
+            'date'=>$now,'lottery_id'=>$lottery->id,
         ]);
-        return view('ticket.index')->with("success","ticket generado")->with("ticket_code","LG".$code_number)->with("date", now()->format("d/m/Y H:i:s"));
+
+        return view('ticket.index')->with("success","ticket generado")->with("ticket_code","LG".$code_number)->with("date", $now->format("d/m/Y H:i:s"));
     }
 
     /**

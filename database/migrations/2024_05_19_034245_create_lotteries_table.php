@@ -16,6 +16,8 @@ return new class extends Migration
             $table->timestamps();
             $table->date('date');
             $table->integer('state');
+            $table->unsignedBigInteger('admin_id')->nullable(true);
+            $table->foreign('admin_id')->references('id')->on('administrators');
         });
     }
 

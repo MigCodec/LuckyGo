@@ -14,5 +14,12 @@ class Ticket extends Model
     'price',
     'code',
     'date',
+    'lottery_id',
     ];
+    public function lottery(){
+        return $this->belongsTo(Lottery::class);
+    }
+    public function sorter(){
+        return $this->belongsTo(Sorter::class);
+    }
 }
