@@ -23,11 +23,23 @@ class StoreTicketRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
-        return [
-            'numbers' => 'required|array|size:5',
-            'numbers.*' => 'integer|between:1,30',
-            'im_feeling_lucky' => 'sometimes|boolean',
-        ];
-    }
+{
+    return [
+        'numbers' => 'required|array|size:5',
+        'numbers.*' => 'integer|between:1,30',
+        'im_feeling_lucky' => 'sometimes|boolean',
+    ];
+}
+
+
+/**
+ * Validates that only 5 numbers have been selected ion the ticket.
+ * 
+ *  */
+public function messages()
+{
+    return [
+        'numbers.size' => 'Deben selecionar exactamente 5 números.',
+    ];
+}
 }
