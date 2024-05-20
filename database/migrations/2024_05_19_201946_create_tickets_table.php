@@ -21,6 +21,8 @@ return new class extends Migration
             $table->date('date');
             $table->unsignedBigInteger('sorter_id');
             $table->foreign('sorter_id')->references('id')->on('sorters');
+            $table->unsignedBigInteger('lottery_id');
+            $table->foreign('lottery_id')->references('id')->on('lotteries');
         });
     }
 

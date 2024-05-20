@@ -32,7 +32,7 @@
 <body>
     <div class="container">
        <!-- Logo -->
-        <img src="luckygo_logo.png" class="logo" alt="Lucky Go Logo">
+       <img src="luckygo_logo.png" class="logo" alt="Lucky Go Logo">
     </div>
     <!-- Title Login-->
     <h1 style="margin-bottom: 16px; font-size: 4rem; font-weight: 800; line-height: 1.5; text-align: center;">Iniciar sesión</h1>

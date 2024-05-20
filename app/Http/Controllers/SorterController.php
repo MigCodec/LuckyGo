@@ -17,7 +17,7 @@ class SorterController extends Controller
     public function index()
     {
         //
-        $sorters = Sorter::withCount('tickets')->get();
+        $sorters = Sorter::withCount('tickets')->orderBy("name","asc")->get();
         
         return view("sorter.index",["sorters"=> $sorters]);
     }
