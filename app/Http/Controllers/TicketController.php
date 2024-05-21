@@ -27,7 +27,7 @@ class TicketController extends Controller
         //
     }
     public function pre_confirmation(StoreTicketRequest $request){
-
+        
         $price = $request->im_feeling_lucky ? 3000 : 2000;
         return view('ticket.confirmation', [
             'numbers' => json_encode($request->numbers),

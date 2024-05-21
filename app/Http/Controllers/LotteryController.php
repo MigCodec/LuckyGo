@@ -15,7 +15,7 @@ class LotteryController extends Controller
      */
     public function index()
     {
-        $lotteries = Lottery::select(
+        /*$lotteries = Lottery::select(
             'lotteries.id',
             'lotteries.date',
             DB::raw('IFNULL(COUNT(tl.id),0)+IFNULL(COUNT(tn.id),0) AS tickets_count'),
@@ -33,7 +33,16 @@ class LotteryController extends Controller
         })->leftjoin('administrators as a',function($join){
             $join->on('lotteries.admin_id','=','a.id');
         })->groupBy('lotteries.id','lotteries.date','lotteries.state','a.id')->get();
-
+        */
+        
+        /*$lotteries = Lottery::withCount('tickets','normal_tickets','lucky_tickets')
+        ->withSum('normal_tickets','price')
+        ->withSum('lucky_tickets','price')
+        ->withSum('tickets','price')->get();
+        */
+        $lotteries = Lottery::All();
+        $lottery = Lottery::firstOrFail();
+    
         return view("lottery.index",["lotteries"=> $lotteries]);
     }
 
@@ -44,7 +53,9 @@ class LotteryController extends Controller
     {
         //
     }
-
+    public function register(Lottery $lottery){
+        return view('lottery.store',['lottery'=> $lottery]);
+    }
     /**
      * Store a newly created resource in storage.
      */

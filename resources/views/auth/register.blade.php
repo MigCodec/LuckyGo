@@ -26,12 +26,13 @@
 </head>
 <body>
     <!-- Main Container -->
+    <!--
     <div class="container">
-        <!-- Logo -->
         <img src="luckygo_logo.png" alt="Lucky Go Logo" 
         style = "width: 100px; height: auto;">
         
     </div>
+    -->
     <!-- Title register -->
     <h1 style="margin-bottom: 50px; font-size: 2.5rem; font-weight: 800; line-height: 1.5; text-align: center;">Registrar Sorteador</h1>
     <!-- Registration Form -->

@@ -57,25 +57,28 @@ th {
         {{$lottery->date}}
     </td>
     <td>
-        {{$lottery->tickets_count}}
+        {{$lottery->count_total_tickets}}
     </td>
     <td>
-        {{$lottery->sum_normal_ticket}}
+        {{$lottery->sum_price_normal_tickets}}
     </td>
     <td>
-        {{$lottery->sum_lucky_ticket}}
+        {{$lottery->sum_price_lucky_tickets}}
     </td>
     <td>
-        {{$lottery->total}}
+        {{$lottery->sum_total_tickets   }}
     </td>
     <td>
-        @if($lottery->state==0)
+        @if($lottery->status==0)
         Abierto
         @endif
-        @if($lottery->state==1)
+        @if($lottery->status==1)
         No Realizado
+        <form method="GET" action="{{ route('lotteries.store',$lottery->id) }}">
+            <button type="submit">Ingresar</button>
+        </form>
         @endif
-        @if($lottery->state==2)
+        @if($lottery->status==2)
         Realizado
         @endif
     </td>
