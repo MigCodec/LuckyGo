@@ -1,29 +1,5 @@
 @extends('includes.navbar')
 @section('content')
-<style>
-    table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-/* Estilo para las celdas de la tabla */
-th, td {
-    padding: 8px;
-    border: 1px solid #dddddd;
-    text-align: left;
-}
-
-/* Estilo para las filas pares */
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-/* Estilo para el encabezado de la tabla */
-th {
-    background-color: #dddddd;
-    font-weight: bold;
-}
-</style>
 <h1>
     Listado de Sorteos
 </h1>
