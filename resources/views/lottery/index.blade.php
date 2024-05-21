@@ -74,7 +74,7 @@ th {
         @endif
         @if($lottery->status==1)
         No Realizado
-        <form method="GET" action="{{ route('lotteries.store',$lottery->id) }}">
+        <form method="GET" action="{{ route('lotteries.register',$lottery->id) }}">
             <button type="submit">Ingresar</button>
         </form>
         @endif

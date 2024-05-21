@@ -63,8 +63,8 @@ class Lottery extends Model
             if(Carbon::parse($this->date)->isPast()) {
                 return 1;
             }
-            return 2;
+            return 0;
         }
-        return 0;
+        return 2;
     }
 }

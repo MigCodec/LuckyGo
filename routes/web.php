@@ -41,7 +41,8 @@ Route::get('/tickets',[TicketController::class,'index'])->name('tickets.index');
 Route::post('/tickets',[TicketController::class,'store'])->name('tickets.store');
 Route::post('/tickets/pre_confirmation', [TicketController::class, 'pre_confirmation'])->name('tickets.pre_confirmation');
 Route::get('lotteries',[LotteryController::class,"index"])->name("lotteries.index");
-Route::get("lotteries/{lottery}/store",[LotteryController::class,"register"])->name("lotteries.store");
+Route::get("lotteries/{lottery}/store",[LotteryController::class,"register"])->name("lotteries.register");
+Route::post("lotteries/store",[LotteryController::class,"store"])->name("lotteries.store");
 // Middleware to enforce authentication for 'user' and 'admin' roles, and to ensure email verification
 Route::middleware(['auth:user,admin', 'verified']);
 Route::get('logo.png', [LogoController::class, 'show']);

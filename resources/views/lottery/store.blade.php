@@ -41,8 +41,9 @@
         </td>
         <td>
         </table>
-    <form method="POST" action="{{ route('tickets.pre_confirmation') }}">
+    <form method="POST" action="{{ route('lotteries.store') }}">
         @csrf
+        <input name="lottery_id" type="hidden" value="{{$lottery->id}}"/>
         <div class="form-group">
             <label for="numbers">Sorteo</label>
             <table>
