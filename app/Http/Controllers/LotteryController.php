@@ -61,7 +61,7 @@ class LotteryController extends Controller
      */
     public function store(StoreLotteryRequest $request)
     {
-        
+        dd($request);
         //
     }
 

@@ -63,7 +63,7 @@
             </table>
         </div>
         <div class="form-group">
-            <label for="numbers">Tendre Suerte</label>
+            <label for="lucky_numbers">Tendre Suerte</label>
             <table>
                 @for ($i = 0; $i < 5; $i++)
                     <tr>
@@ -72,8 +72,8 @@
                                 $number = $i * 6 + $j;
                             @endphp
                             <td>
-                                <input type="checkbox" id="number_{{ $number }}" name="lucky_numbers[]" value="{{ $number }}">
-                                <label for="number_{{ $number }}">{{ $number }}</label>
+                                <input type="checkbox" id="lucky_number_{{ $number }}" name="lucky_numbers[]" value="{{ $number }}">
+                                <label for="lucky_number_{{ $number }}">{{ $number }}</label>
                             </td>
                         @endfor
                     </tr>
