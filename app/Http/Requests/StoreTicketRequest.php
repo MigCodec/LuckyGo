@@ -11,10 +11,7 @@ class StoreTicketRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if(auth()->guard("sorter")->check()){
-            return true;
-        }
-        return false;
+ return true;
     }
 
     /**
