@@ -59,7 +59,7 @@ class Lottery extends Model
     }
     */
     protected function getStatusAttribute(){
-        if($this->admin_id==null){
+        if($this->sorter_id==null){
             if(Carbon::parse($this->date)->isPast()) {
                 return 1;
             }
