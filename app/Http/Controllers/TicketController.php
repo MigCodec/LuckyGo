@@ -65,7 +65,7 @@ class TicketController extends Controller
                 'state'=>0,
             ]);
         }
-        $ticket = $sorter->tickets()->create([
+        $ticket = $lottery->tickets()->create([
             'numbers' => json_decode($request->numbers),
             'im_feeling_lucky' => $request->im_feeling_lucky?true:false,
             'price' => $request->price,
