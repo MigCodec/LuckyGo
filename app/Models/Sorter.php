@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Ticket;
+use App\Models\Lottery;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -46,7 +47,7 @@ class Sorter extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function tickets(){
-        return $this->hasmany(Ticket::class);
+    public function lotteries(){
+        return $this->hasmany(Lottery::class);
     }
 }

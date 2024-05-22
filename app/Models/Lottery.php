@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Sorter;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -66,5 +67,8 @@ class Lottery extends Model
             return 0;
         }
         return 2;
+    }
+    public function sorter(){
+        return $this->belongsTo(Sorter::class);
     }
 }
