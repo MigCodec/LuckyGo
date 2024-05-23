@@ -1,6 +1,13 @@
 @extends('includes.navbar')
 @section('content')
 <html>
+    <body>
+        <form action="{{route('sorters.search')}}" method="GET"><br>
+            @csrf          
+            <input id="search" name="q" type="text" placeholder="Escriba aquí">
+            <input id="submit" type="submit" value="Buscar">
+        </form>
+    </body>        
     <table>
             <tr>
                 <th>

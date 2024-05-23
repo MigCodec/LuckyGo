@@ -124,4 +124,16 @@ class SorterController extends Controller
         }
         return redirect()->route('sorters.index')->with('auth_failed', 'No estas autorizado a utilizar esta funcion');
     }
+
+    public function search(Request $request){
+        
+        $sorters = Sorter::all();
+
+        if($request->has("q")) {
+            $sorters = Sorter::where('name', 'LIKE', '%'.$request->input('q').'%')->get();
+            //$sorters->where("name", $request->get("q"));  
+            }
+
+        return view("sorter.index", ["sorters" => $sorters]);
+    }
 }
