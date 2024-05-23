@@ -32,22 +32,36 @@
             </table>
         </div>
         <div>
-            <p>Billete: $2000</p>
+            <p>Billete: $2.000</p>
             <input type="checkbox"  id="im_feeling_lucky" name="im_feeling_lucky" value="1">
             <label for="im_feeling_lucky">Categoría "Tendré Suerte" (+$1.000)</label>
         </div>
-        <button type="submit" style="margin: 15px; background-color: #328000; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">Jugar</button>
+        <div style="background-color: #add8e5; border-radius: 8px; margin: 15px auto; display: inline-block; padding: 5px;">
+            <p>
+                Para participar en el sorteo de cada domingo, asegúrate de realizar la compra de tus<br>
+                billetes antes de las 23:59 horas de ese mismo día. Todas las compras efectuadas<br>
+                dentro de este plazo serán incluidas en el sorteo correspondiente.
+            </p>
+        </div>
+        <div style="margin: 5px auto">
+            <button type="submit" style="margin: 15px; background-color: #328000; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">Jugar</button>
+        </div>
         @error('numbers')
         {{$message}}
         @enderror
     </form>
-    @if(isset($success))
-    <div style="display: inline-block; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);">
-    <p>¡Compra realizada exitosamente!</p>
-    <p>Tu número de billete es el <b>{{$ticket_code}}</b></p>
-    <p>Fecha <b>{{$date}}</b></p>
-    <b style="color: #46a952;">Juega con responsabilidad en LuckyGo</b>
+    
+    @if(isset($success) && $success)
+    <div id="success-message" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+        <span style="cursor: pointer; position: absolute; top: 10px; right: 15px;" onclick="this.parentElement.style.display = 'none';">x</span>
+        <p>¡Compra realizada exitosamente!</p>
+        <p>Tu número de billete es el <b>{{$ticket_code}}</b></p>
+        <p>Fecha <b>{{$date}}</b></p>
+        <b style="color: #46a952;">Juega con responsabilidad en LuckyGo</b>
     </div>
     @endif
+
+
+
 </div>
 @endsection
