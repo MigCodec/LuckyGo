@@ -69,6 +69,6 @@ class Lottery extends Model
         return 2;
     }
     public function sorter(){
-        return $this->belongsTo(Sorter::class);
+        return $this->belongsTo(Sorter::class,'sorter_id');
     }
 }
