@@ -5,15 +5,14 @@
       
     <form action="{{route('sorters.search')}}" method="GET"><br>
         @csrf          
-        <input id="search" name="q" type="text" placeholder="Escriba aquí">
+        <input id="search" name="q" type="text" placeholder="Ingrese nombre o correo electrónico">
         <input id="submit" type="submit" value="Buscar">
     </form>
-   <!-- @if (isset($error))
+    @if (isset($error))
         <div class="alert alert-danger">
             {{ $error }}
         </div> 
-    @else-->
-   
+    @else
         <table>
                 <tr>
                     <th>
@@ -63,5 +62,38 @@
                 @endforeach
         </table>
 
-   <!-- @endif -->    
+   @endif  
 @endsection
+
+@section('styles')
+    <style>
+        #search {
+            width: 600px; padding: 12px; font-size: 18px;
+        }
+
+        #submit {
+            padding: 12px 24px; font-size: 18px;
+        }
+
+        table {
+            width: 100%; border-collapse: collapse; margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px; text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+@endsection
+

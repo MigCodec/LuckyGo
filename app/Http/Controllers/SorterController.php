@@ -19,9 +19,9 @@ class SorterController extends Controller
         //
         $sorters = Sorter::withCount('lotteries')->orderBy('name','asc')->get();
 
-        //if($sorters->isEmpty()){
-          //  return view ('sorter.index',['sorters' => $sorters, 'error' => 'No hay sorteadores en el sistema']);
-        //}
+        if($sorters->isEmpty()){
+           return view ('sorter.index',['sorters' => $sorters, 'error' => 'No hay sorteadores en el sistema']);
+        }
         
         return view('sorter.index',['sorters'=> $sorters]);
     }

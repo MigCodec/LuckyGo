@@ -60,3 +60,4 @@ body{
   <img src="{{ url('logo.png') }}" alt="Lucky Go Logo">
 </div>
 @yield('content')
+@yield('styles')
