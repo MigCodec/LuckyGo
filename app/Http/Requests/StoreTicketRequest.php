@@ -32,11 +32,12 @@ class StoreTicketRequest extends FormRequest
 /**
  * Validates that only 5 numbers have been selected ion the ticket.
  * 
- *  */
-public function messages()
-{
-    return [
-        'numbers.size' => 'Deben selecionar exactamente 5 números.',
-    ];
-}
+ *
+*public function messages()
+*{
+*    return [
+*        'numbers.size' => 'Deben selecionar exactamente 5 números.',
+*    ];
+*}
+*/
 }

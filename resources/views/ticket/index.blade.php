@@ -19,7 +19,7 @@
                             @endphp
                             <td style="padding: 5px;">
                                 <input type="checkbox" id="number_{{ $number }}" name="numbers[]" value="{{ $number }}" style="display: none">
-                                <label style="display: inline-block; width: 50px; height: 50 px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;" for="number_{{ $number }}">{{ $number }}</label>
+                                <label style="display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;" for="number_{{ $number }}">{{ $number }}</label>
                                 <style>
                                     #number_{{$number}}:checked + label{
                                         background-color: #8fef90 !important;
@@ -46,9 +46,11 @@
         <div style="margin: 5px auto">
             <button type="submit" style="margin: 15px; background-color: #328000; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">Jugar</button>
         </div>
-        @error('numbers')
-        {{$message}}
-        @enderror
+        <div style="display: flex; justify-content: center; margin-top: 20px;">
+            @error('numbers')
+            <div style="background-color: #f56558; border: 1px solid #f56558; color: white; padding: 5px; border-radius: 5px; max-width: 300px;">Debe seleccionar exactamente 5 números</div>
+            @enderror
+        </div>
     </form>
     
     @if(isset($success) && $success)
@@ -61,7 +63,33 @@
     </div>
     @endif
 
-
-
 </div>
+
+<script>
+    function limitCheckboxSelection() {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        var checkedCount = 0;
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checkedCount++;
+            }
+
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    if (checkedCount >= 5) {
+                        this.checked = false;
+                    } else {
+                        checkedCount++;
+                    }
+                } else {
+                    checkedCount--;
+                }
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', limitCheckboxSelection);
+</script>
+
 @endsection

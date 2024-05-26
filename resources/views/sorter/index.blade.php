@@ -54,11 +54,13 @@
                     <td>
                         <form action="{{ route('sorters.toggle', $sorter->id) }}" method="POST">
                             @csrf
-                            <button type="submit">
-                                {{ $sorter->status ? 'Habilitado' : 'Desabilitado' }}
-                            </button>
+                            <select name="status" onchange="this.form.submit()">
+                                <option value="1" {{ $sorter->status ? 'selected' : '' }}>Habilitado</option>
+                                <option value="0" {{ $sorter->status ? '' : 'selected' }}>Deshabilitado</option>
+                            </select>
                         </form>
                     </td>
+                </tr>
                 @endforeach
         </table>
 
@@ -96,4 +98,3 @@
         }
     </style>
 @endsection
-
