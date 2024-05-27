@@ -71,18 +71,18 @@
         var checkedCount = 0;
 
         checkboxes.forEach(function(checkbox) {
-            if (checkbox.checked) {
+            if (checkbox.checked && !checkbox.getAttribute('id').includes('im_feeling_lucky')) {
                 checkedCount++;
             }
 
             checkbox.addEventListener('change', function() {
-                if (this.checked) {
+                if (this.checked && !this.getAttribute('id').includes('im_feeling_lucky')) {
                     if (checkedCount >= 5) {
                         this.checked = false;
                     } else {
                         checkedCount++;
                     }
-                } else {
+                } else if (!this.checked && !this.getAttribute('id').includes('im_feeling_lucky')) {
                     checkedCount--;
                 }
             });
