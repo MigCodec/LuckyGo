@@ -18,7 +18,8 @@
     left: 0;
     width: 100%;
     background-color: #0A74DA;
-    padding: 10px 20px; 
+    padding: 10px 20px;
+   display: flex;
     z-index: 1000;
 }
 
@@ -26,11 +27,12 @@ nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    margin-left: auto;
 }
 
 nav ul li {
-    display: inline-block;
-    margin-right: 20px;
+   display: inline-block;
+    margin-right: 30px;
 }
 
 nav ul li a {
@@ -43,9 +45,9 @@ nav ul li a:hover {
 }
 
 .logo {
-    position: relative;
+   position: relative;
     margin-top: 50px; 
-    margin-left: 50px; 
+    margin-left: 50px;
 }
 
 .logo img {

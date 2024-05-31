@@ -53,8 +53,8 @@
         </div>
     </form>
     
-    @if(isset($success) && $success)
-    <div id="success-message" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+    @if(isset($success))
+    <div style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
         <span style="cursor: pointer; position: absolute; top: 10px; right: 15px;" onclick="this.parentElement.style.display = 'none';">x</span>
         <p>¡Compra realizada exitosamente!</p>
         <p>Tu número de billete es el <b>{{$ticket_code}}</b></p>
