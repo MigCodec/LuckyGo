@@ -134,7 +134,8 @@ class SorterController extends Controller
         $sorters = Sorter::all();
 
         if($request->has("q")) {
-            $sorters = Sorter::where('name', 'LIKE', '%'.$request->input('q').'%')->get();
+            $sorters = Sorter::where('name', 'LIKE', '%'.$request->input('q').'%') 
+            -> orWhere('email', 'LIKE', '%'.$request->input('q').'%')->get();
             //$sorters->where("name", $request->get("q"));  
             }
 
