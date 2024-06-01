@@ -1,9 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Sorter;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -13,17 +11,17 @@ class SorterController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
-        $sorters = Sorter::withCount('lotteries')->orderBy('name','asc')->get();
+        $sorters = Sorter::withCount('lotteries')->orderBy('name', 'asc')->get();
 
-        if($sorters->isEmpty()){
-           return view ('sorter.index',['sorters' => $sorters, 'error' => 'No hay sorteadores en el sistema']);
+        if ($sorters->isEmpty()) {
+            return view('sorter.index', ['sorters' => $sorters, 'error' => 'No hay sorteadores en el sistema']);
         }
-        
-        return view('sorter.index',['sorters'=> $sorters]);
+
+        return view('sorter.index', ['sorters' => $sorters]);
     }
 
     /**
@@ -36,7 +34,7 @@ class SorterController extends Controller
 
     /**
      * Stores a new sorter record in the database and sends an email notification with the password.
-     * @param \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
@@ -51,38 +49,38 @@ class SorterController extends Controller
             'email.unique' => 'El correo electrónico ingresado ya existe en el sistema',
             'email.email' => 'Debe ingresar un correo válido',
         ];
-
+        
         //validate request data
         $validated = $request->validate([
-            "name"=>['required'],
-            "age"=>['required', 'integer', 'between:18,65'],
-            "email"=>['required','email', 'unique:sorters']
-        ],$messages);
+            'name' => ['required'],
+            'age' => ['required', 'integer', 'between:18,65'],
+            'email' => ['required', 'email', 'unique:sorters']
+        ], $messages);
 
-         // Generate a random password
+        // Generate a random password
         $password_1digit = rand(1, 9);
         $password_remain = rand(10000, 99999);
-        $password = $password_1digit . $password_remain; 
+        $password = $password_1digit . $password_remain;
 
-        try{
-            // Send an email notification with the generated password
-            Mail::raw("Su contraseña es: $password", function ($message) use ($request){
-            $message->to($request->email)->subject('Contraseña Lucky Go');
-            
-        });
-        }catch(\Exception $exception){
-            return redirect()->back()->with("message_conection_error","Error de conexión");
+        try {
+             // Send an email notification with the generated password
+            Mail::raw("Su contraseña es: $password", function ($message) use ($request) {
+                $message->to($request->email)->subject('Contraseña Lucky Go');
+            });
+        } catch (\Exception $exception) {
+            return redirect()->back()->with("message_conection_error", "Error de conexión");
         }
-        // Store the new sorter record in the database
+         // Store the new sorter record in the database
         DB::table('sorters')->insert([
-                    'name'=>$request->name,
-                    'email'=>$request->email,
-                    'age'=>$request->age,
-                    'status'=>0,
-                    'password'=>Hash::make($password)
-                ]);
+            'name' => $request->name,
+            'email' => $request->email,
+            'age' => $request->age,
+            'status' => 0,
+            'password' => Hash::make($password)
+        ]);
+
         // Redirect the user back with a success message
-        return redirect()->back()->with("message","sorteador creado!");
+        return redirect()->back()->with("message", "sorteador creado!");
     }
 
     /**
@@ -93,7 +91,9 @@ class SorterController extends Controller
         $sorters = Sorter::all();
         return $sorters;
     }
-    public function showForm(){
+
+    public function showForm()
+    {
         return view("sorter.sorter");
     }
 
@@ -120,8 +120,10 @@ class SorterController extends Controller
     {
         //
     }
-    public function toggle(Sorter $sorter){
-        if(auth()->guard("admin")->check()){
+
+    public function toggle(Sorter $sorter)
+    {
+        if (auth()->guard("admin")->check()) {
             $sorter->status = !$sorter->status;
             $sorter->save();
             return redirect()->route('sorters.index')->with('success', 'Estado de Sorteador Actualizado.');
@@ -129,16 +131,25 @@ class SorterController extends Controller
         return redirect()->route('sorters.index')->with('auth_failed', 'No estas autorizado a utilizar esta funcion');
     }
 
-    public function search(Request $request){
-        
+    /**
+     * Search for sorters by name or email and display the results.
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search(Request $request)
+    {
         $sorters = Sorter::all();
 
-        if($request->has("q")) {
-            $sorters = Sorter::where('name', 'LIKE', '%'.$request->input('q').'%') 
-            -> orWhere('email', 'LIKE', '%'.$request->input('q').'%')->get();
-            //$sorters->where("name", $request->get("q"));  
-            }
+        if ($request->has("q")) {
+            $sorters = Sorter::where('name', 'LIKE', '%' . $request->input('q') . '%')
+                ->orWhere('email', 'LIKE', '%' . $request->input('q') . '%')
+                ->get();
+        }
 
-        return view("sorter.index", ["sorters" => $sorters]);
+        if ($sorters->isEmpty()) {
+            return view('sorter.index', ['sorters' => $sorters, 'error' => 'No se encontraron coincidencias']);
+        }
+
+        return view('sorter.index', ['sorters' => $sorters]);
     }
 }
