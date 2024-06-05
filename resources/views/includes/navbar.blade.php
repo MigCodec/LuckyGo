@@ -1,14 +1,22 @@
 <nav>
   <ul>
-    @if(auth()->guard("admin")->check())
+  
+    
+    @if (auth()->guard("admin")->check())
+
     <li><a href="{{route("register")}}">Registrar Sorteador</a></li>
     <li><a href="{{route("sorters.index")}}">Sorteadores</a></li>
-    @endif
-    @if(auth()->guard("sorter")->check())
+    <li><a href="{{route("logout")}}">Cerrar Sesión</a></li>
+  
+    @elseif(auth()->guard("sorter")->check())
+   
     <li><a href="{{route("lotteries.index")}}">Sorteo</a></li>
+    <li><a href="{{route("logout")}}">Cerrar Sesión</a></li>
+    
+     @else
+     <li><a href="{{route("login")}}">Iniciar Sesión</a></li>
     @endif
-    <li><a href="{{route("tickets.index")}}">Comprar billete de loteria</a></li>
-    <li><a href="{{route("logout")}}">Cerrar Sesion</a></li>
+     
   </ul>
 </nav>
 <style>

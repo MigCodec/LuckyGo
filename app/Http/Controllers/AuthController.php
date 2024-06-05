@@ -59,7 +59,7 @@ class AuthController extends Controller
      * @return \Illuminate\Contracts\View\View
      */
     public function loginForm(){
-        return view("auth.login");
+      return view("auth.login");
     }
     /**
      * Displays the register form checking the user. 
@@ -79,7 +79,7 @@ class AuthController extends Controller
     public function logout(){
         Auth::guard("admin")->logout();
         Auth::guard("sorter")->logout();
-        return redirect()->route("login");
+        return redirect()->route("index");
     }
 
 }

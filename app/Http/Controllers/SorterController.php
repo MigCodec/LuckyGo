@@ -120,7 +120,6 @@ class SorterController extends Controller
     {
         //
     }
-
     public function toggle(Sorter $sorter)
     {
         if (auth()->guard("admin")->check()) {
