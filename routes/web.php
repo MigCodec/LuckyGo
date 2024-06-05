@@ -37,9 +37,9 @@ Route::get('logout',[AuthController::class,'logout'])->name('logout');
 Route::get('register',[AuthController::class,'registerForm'])->name('registerForm');
 // Route to handle register form submission
 Route::post('register',[SorterController::class,'store'])->name('register');
-Route::get('sorter',[SorterController::class,"index"])->name("sorters.index");
-Route::post('sorters/{sorter}/toggle',[SorterController::class,"toggle"])->name("sorters.toggle");
-Route::get('sorters/search',[SorterController::class,"search"])->name("sorters.search");
+Route::get('sorter',[SorterController::class,'index'])->name('sorters.index');
+Route::post('sorters/{sorter}/toggle',[SorterController::class,'toggle'])->name('sorters.toggle');
+Route::get('sorters/search',[SorterController::class,'search'])->name('sorters.search');
 
 Route::get('home',[HomeController::class,"form"])->name("homeForm");
 

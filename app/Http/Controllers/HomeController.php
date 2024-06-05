@@ -11,7 +11,7 @@ class HomeController extends Controller
             return view("homeSorter");
         }
         if(auth()->guard("admin")->check()){
-            return view("homeAdmin");
+            return view("sorters");
         }
         return view("login");
     }
