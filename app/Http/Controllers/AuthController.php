@@ -38,7 +38,7 @@ class AuthController extends Controller
         // Validate the sorter user
         if (Auth::guard('sorter')->attempt(['email' => $request->email, 'password' => 
              $request->password], $request->remember)) {
-                return redirect()->intended(route('homeForm'));
+                return redirect()->intended(route('lotteries.index'));
         }
         //Validate the admin user
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => 
