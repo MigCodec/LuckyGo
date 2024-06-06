@@ -3,6 +3,7 @@
 @section('title', 'Comprar Billete de Lotería')
 
 @section('content')
+<!--This view allows users to select their numbers to buy lottery tickets.-->
 <div class="container">
     <h1>Selecciona tus Números</h1>
     <table>
@@ -44,6 +45,7 @@
     <form method="POST" action="{{ route('lotteries.store') }}">
         @csrf
         <input name="lottery_id" type="hidden" value="{{$lottery->id}}"/>
+          <!-- Select lucky numbers -->
         <div class="form-group">
             <label for="numbers">Sorteo</label>
             <table>
@@ -80,6 +82,7 @@
                 @endfor
             </table>
         </div>
+         <!-- Submit and cancel buttons -->
         <button type="submit">Confirmar</button>
         <a href="{{ route('lotteries.index') }}" style="margin: 15px; background-color: #EC2C00; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; text-decoration: none;">Cancelar</a>
         @error('numbers')

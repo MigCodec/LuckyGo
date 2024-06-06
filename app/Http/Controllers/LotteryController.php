@@ -96,6 +96,12 @@ class LotteryController extends Controller
     {
         //
     }
+
+     /**
+     * Get the dates for the Monday and Sunday of the current week.
+     * 
+     * @return array An associative array with the keys 'monday' and 'sunday', containing the dates for Monday and Sunday of this week in 'Y-m-d' format.
+     */
     public static function getMondayAndSundayOfThisWeek() {
         // Set the timezone to avoid discrepancies
         date_default_timezone_set('America/New_York');

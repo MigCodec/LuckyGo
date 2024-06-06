@@ -3,16 +3,18 @@
 @section('title', 'Comprar Billete de Lotería')
 
 @section('content')
-
+<!--This view allows users to purchase lottery tickets by selecting numbers from 1 to 30.
+Users can select up to 5 numbers and choose the "I'm feeling lucky" option.-->
 <div style="text-align: center; font-family: Arial, sans-serif;">
     <h1>Compra de billetes de lotería</h1>
     
+    <!-- Display error message if user doesn't select exactly 5 numbers -->
     @if ($errors->has('numbers'))
         <div style="background-color: #f56558; border: 10px solid #f56558; color: white; padding: 10px; border-radius: 5px; max-width: 300px; margin: 10px auto;">
             Debe seleccionar exactamente 5 números
         </div>
     @endif
-
+    <!-- Form for purchasing lottery ticket -->
     <form method="POST" action="{{ route('tickets.pre_confirmation') }}">
         @csrf
         <div class="form-group">
@@ -38,6 +40,7 @@
                 @endfor
             </table>
         </div>
+        <!-- Option im feeling lucky for ticket purchase -->
         <div>
             <p>Billete: $2.000</p>
             <input type="checkbox" id="im_feeling_lucky" name="im_feeling_lucky" value="1">
@@ -54,7 +57,7 @@
             <button type="submit" style="margin: 15px; background-color: #328000; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">Jugar</button>
         </div>
     </form>
-
+    <!-- Display success message after purchase -->
     @if(session('success'))
         <div style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
             <span style="cursor: pointer; position: absolute; top: 10px; right: 15px;" onclick="this.parentElement.style.display = 'none';">x</span>
@@ -65,7 +68,7 @@
         </div>
     @endif
 </div>
-
+<!-- JavaScript for checkbox functionality -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var checkboxes = document.querySelectorAll('input[type="checkbox"]');

@@ -1,14 +1,16 @@
 @extends('includes.navbar')
 @section('content')
+<!--This view displays a list of sorters in a table format.
+Users can search for sorters by name or email-->
 
 <h1>Lista De Sorteadores</h1>
-
+<!-- Search form for sorters -->
 <form action="{{route('sorters.search')}}" method="GET"><br>
     @csrf          
     <input id="search" name="q" type="text" placeholder="Ingrese nombre o correo electrónico">
     <input id="submit" type="submit" value="Buscar">
 </form>
-
+<!-- Display error message if there are no sorters -->
 @if (isset($error))
     <div class="alert alert-danger error-box">
         {{ $error }}
@@ -31,6 +33,7 @@
                 <td>{{ $sorter->age }}</td>
                 <td>{{ $sorter->lotteries_count }}</td>
                 <td>
+                    <!-- Form to toggle sorter status -->
                     <form action="{{ route('sorters.toggle', $sorter->id) }}" method="POST">
                         @csrf
                         <select name="status" onchange="this.form.submit()">

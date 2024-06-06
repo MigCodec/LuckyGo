@@ -120,11 +120,16 @@ class SorterController extends Controller
     {
         //
     }
+    /**
+     * This method allows an admin to toggle the status of a sorter. If the authenticated user
+     * is an admin, it inverts the current status of the specified sorter and saves the change.
+     */
     public function toggle(Sorter $sorter)
     {
         if (auth()->guard("admin")->check()) {
             $sorter->status = !$sorter->status;
             $sorter->save();
+         // Redirect to the sorters index page with a success message    
             return redirect()->route('sorters.index')->with('success', 'Estado de Sorteador Actualizado.');
         }
         return redirect()->route('sorters.index')->with('auth_failed', 'No estas autorizado a utilizar esta funcion');

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
+/**
+ * Displays the application's logo.
+ */
 class LogoController extends Controller
 {
     public function show(){

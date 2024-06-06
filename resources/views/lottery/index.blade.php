@@ -1,5 +1,8 @@
 @extends('includes.navbar')
 @section('content')
+
+<!--
+This view displays a list of lotteries in a table format.-->
 <h1>
     Listado de Sorteos
 </h1>
