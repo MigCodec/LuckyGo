@@ -11,7 +11,7 @@ use App\Http\Controllers\LotteryController;
 //Route::get('/logg', function () {
 //    return view('auth.logg');
 //});
- // Route to the login view
+ // Route to the ticket view
 Route::get("/",function(){
     return view("ticket.index");
 })->name("index");
@@ -46,7 +46,7 @@ Route::get('sorters/search',[SorterController::class,'search'])->name('sorters.s
 Route::get('home',[HomeController::class,"form"])->name("homeForm");
 
 // Routes for ticket purchasing
-Route::get('/tickets',[TicketController::class,'index'])->name('tickets.index');
+Route::get('/tickets',[TicketController::class,'index'])->name('ticket.index');
 Route::post('/tickets',[TicketController::class,'store'])->name('tickets.store');
 Route::post('/tickets/pre_confirmation', [TicketController::class, 'pre_confirmation'])->name('tickets.pre_confirmation');
 

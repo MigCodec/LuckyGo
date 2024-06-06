@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
 
+
 class TicketController extends Controller
 {
     /**
@@ -73,7 +74,7 @@ class TicketController extends Controller
             'date'=>$now,'lottery_id'=>$lottery->id,
         ]);
 
-        return view('ticket.index')->with("success","ticket generado")->with("ticket_code","LG".$code_number)->with("date", $now->format("d/m/Y H:i:s"));
+        return redirect()->route('ticket.index')->with("success","ticket generado")->with("ticket_code","LG".$code_number)->with("date", $now->format("d/m/Y H:i:s"));
     }
 
     /**

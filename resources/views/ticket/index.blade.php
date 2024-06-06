@@ -59,6 +59,7 @@ Users can select up to 5 numbers and choose the "I'm feeling lucky" option.-->
     </form>
     <!-- Display success message after purchase -->
     @if(session('success'))
+       
         <div style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
             <span style="cursor: pointer; position: absolute; top: 10px; right: 15px;" onclick="this.parentElement.style.display = 'none';">x</span>
             <p>¡Compra realizada exitosamente!</p>

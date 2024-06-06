@@ -18,7 +18,7 @@
             <input type="hidden" name="price" value="{{ $price }}">
              <!-- Button to continue with the purchase -->
             <button style="margin: 15px; background-color: #328000; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;" type="submit" >Continuar</button>
-            <a href="{{ route('tickets.index') }}" style="margin: 15px; background-color: #EC2C00; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; text-decoration: none;">Cancelar</a>
+            <a href="{{ route('ticket.index') }}" style="margin: 15px; background-color: #EC2C00; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; text-decoration: none;">Cancelar</a>
         </form>
     </div>
 </div>
