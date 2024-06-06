@@ -134,6 +134,7 @@
         }
         function hideConfirmation() {
             document.getElementById('confirmationBox').style.display = 'none';
+            location.reload();||
         }
         function registerSorteador() {
             document.querySelector('form').submit();
