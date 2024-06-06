@@ -21,17 +21,59 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+        .confirmation-box {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .confirmation-box-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .confirm-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .accept {
+            background-color: #328000;
+            color: #fff;
+            padding: 10px 20px;
+            border: 1px solid black;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .reject {
+            background-color: #F6686B;
+            color: #fff;
+            padding: 10px 20px;
+            border: 1px solid black;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <!-- Main Container -->
     <!-- Main Container -->
     <!--
     <div class="container">
         <img src="luckygo_logo.png" alt="Lucky Go Logo" 
         style = "width: 100px; height: auto;">
         
-    </div>
+    </div>d
     -->
     <!-- Title register -->
     <h1 style="margin-bottom: 50px; font-size: 2.5rem; font-weight: 800; line-height: 1.5; text-align: center;">Registrar Sorteador</h1>
@@ -67,14 +109,37 @@
             </div>
             <!-- Submit Button -->
             <div style="display: flex; justify-content: center;">
-                <button type="submit" style="background-color: #3B82F6; color: #fff; font-weight: 500; border-radius: 0.375rem; font-size: 0.875rem; text-align: center; padding: 0.625rem 1.25rem; width: 100%; max-width: 12rem;">Registrar</button>
+                <button type="button" onclick="showConfirmation()" style="background-color: #3B82F6; color: #fff; font-weight: 500; border-radius: 0.375rem; font-size: 0.875rem; text-align: center; padding: 0.625rem 1.25rem; width: 100%; max-width: 12rem;">Registrar</button>
                 @if(session('message_conection_error'))
                 <p style="background-color: #f56558; color: #fff; border-radius: 0.375rem; font-size: 1rem; padding: 0.25rem;">{{session('message_conection_error')}}</p>
                 @endif
             </div>
         </form>
-    </div>    
+    </div>
 
+    <!-- Confirmation Box -->
+    <div class="confirmation-box" id="confirmationBox">
+        <div class="confirmation-box-content">
+            <h2 style="margin-bottom: 20px;">¿Desea agregar al sorteador?</h2>
+            <div class="confirm-buttons">
+                <button class="accept" onclick="registerSorteador()">Aceptar</button>
+                <button class="reject" onclick="hideConfirmation()">Rechazar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showConfirmation() {
+            document.getElementById('confirmationBox').style.display = 'block';
+        }
+        function hideConfirmation() {
+            document.getElementById('confirmationBox').style.display = 'none';
+        }
+        function registerSorteador() {
+            document.querySelector('form').submit();
+            hideConfirmation();
+        }
+    </script>
 </body>
 </html>
 @endsection
