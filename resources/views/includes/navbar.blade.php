@@ -69,8 +69,88 @@ body{
   font-family: Arial, sans-serif;
 }
   </style>
+  <style>
+.hidden{
+  display:none;
+}
+#confirmationDialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.dialogContent {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.dialogContent p {
+    margin-bottom: 20px;
+}
+
+.dialogContent button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#confirmButton {
+    background-color: green;
+    color: white;
+}
+
+#cancelButton {
+    background-color: red;
+    color: white;
+}
+  </style>
 <div class="logo">
   <img src="{{ url('logo.png') }}" alt="Lucky Go Logo">
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const forms = document.querySelectorAll('.confirmedform');
+    const confirmationDialog = document.getElementById('confirmationDialog');
+    const confirmButton = document.getElementById('confirmButton');
+    const cancelButton = document.getElementById('cancelButton');
+    let currentForm = null;
+    forms.forEach(form => {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            currentForm = form;
+            console.log("xD");
+            confirmationDialog.classList.remove('hidden');
+            confirmationDialog.style="display:flex";
+        });
+    });
+
+    confirmButton.addEventListener('click', function() {
+        if (currentForm) {
+            currentForm.submit();
+        }
+    });
+
+    cancelButton.addEventListener('click', function() {
+        confirmationDialog.classList.add('hidden');
+        confirmationDialog.style="display:none";
+    });
+}); 
+</script>
+  <div id="confirmationDialog" class="hidden">
+    <div class="dialogContent">
+        <p>¿Estás seguro de que quieres enviar este formulario?</p>
+        <button id="confirmButton">Confirmar</button>
+        <button id="cancelButton">Cancelar</button>
+    </div>
 </div>
 @yield('content')
 @yield('styles')
