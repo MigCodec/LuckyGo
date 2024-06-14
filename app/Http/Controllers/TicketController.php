@@ -80,9 +80,13 @@ class TicketController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ticket $ticket)
+    public function show(Request $request)
     {
-        //
+        $validate = $request->validate(
+            ["ticket_id"=>["required"]
+        ]);
+        $ticket_result = Ticket::where("id",$validate->ticket_id);        
+        return view("tickets.review",["ticket"]);
     }
 
     /**
@@ -107,5 +111,8 @@ class TicketController extends Controller
     public function destroy(Ticket $ticket)
     {
         //
+    }
+    public function review(){
+       return view('ticket.review');
     }
 }

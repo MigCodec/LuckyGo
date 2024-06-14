@@ -14,6 +14,7 @@
     <li><a href="{{route("logout")}}">Cerrar Sesión</a></li>
     <!-- Link for unauthenticated users -->
      @else
+     <li><a href="{{route("tickets.review")}}">Revisar Ticket</a></li>
      <li><a href="{{route("login")}}">Iniciar Sesión</a></li>
     @endif
      

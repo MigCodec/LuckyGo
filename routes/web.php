@@ -49,7 +49,8 @@ Route::get('home',[HomeController::class,"form"])->name("homeForm");
 Route::get('/tickets',[TicketController::class,'index'])->name('ticket.index');
 Route::post('/tickets',[TicketController::class,'store'])->name('tickets.store');
 Route::post('/tickets/pre_confirmation', [TicketController::class, 'pre_confirmation'])->name('tickets.pre_confirmation');
-
+Route::get('tickets/review',[TicketController::class,'review'])->name('tickets.review');
+Route::post('tickets/show',[TicketController::class,'show'])->name('tickets.show');
 // Routes for lottery management
 Route::get('lotteries',[LotteryController::class,"index"])->name("lotteries.index");
 Route::get("lotteries/{lottery}/store",[LotteryController::class,"register"])->name("lotteries.register");

@@ -38,7 +38,12 @@ class AuthController extends Controller
         // Validate the sorter user
         if (Auth::guard('sorter')->attempt(['email' => $request->email, 'password' => 
              $request->password], $request->remember)) {
-                return redirect()->intended(route('lotteries.index'));
+                $sorter = Sorter::where('email','=', $request->email)->first();
+                if($sorter->status){
+                    return redirect()->intended(route('lotteries.index'));
+                }
+                Auth::guard('sorter')->logout();
+                return redirect()->back()->with("message","Sorteador Desabilitado");
         }
         //Validate the admin user
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => 
