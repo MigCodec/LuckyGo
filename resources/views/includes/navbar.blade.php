@@ -4,6 +4,8 @@
     
     @if (auth()->guard("admin")->check())
     <!-- Links for admin users -->
+    
+    <li><a href="{{route("change_password_form")}}">Cambiar Contraseña</a></li>
     <li><a href="{{route("register")}}">Registrar Sorteador</a></li>
     <li><a href="{{route("sorters.index")}}">Sorteadores</a></li>
     <li><a href="{{route("logout")}}">Cerrar Sesión</a></li>

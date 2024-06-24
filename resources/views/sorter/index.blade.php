@@ -2,7 +2,9 @@
 @section('content')
 <!--This view displays a list of sorters in a table format.
 Users can search for sorters by name or email-->
-
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Sorteador</title>
 <h1>Lista De Sorteadores</h1>
 <!-- Search form for sorters -->
 <form action="{{route('sorters.search')}}" method="GET"><br>

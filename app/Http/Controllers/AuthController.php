@@ -87,5 +87,14 @@ class AuthController extends Controller
         return redirect()->route("index");
     }
 
+    public function change_password_form(){
+        return view("auth.changePassword");
+    }
+
+    public function change_password(Request $request){
+        //Validate
+
+        return view("auth.changePassword");
+    }
 }
 

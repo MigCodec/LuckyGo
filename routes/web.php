@@ -59,3 +59,6 @@ Route::post("lotteries/store",[LotteryController::class,"store"])->name("lotteri
 Route::middleware(['auth:user,admin', 'verified']);
 // Route for serving logo image
 Route::get('logo.png', [LogoController::class, 'show']);
+// Route for change password
+Route::get('change_password', [AuthController::class,'change_password_form'])->name('change_password_form');
+Route::post('change_password',[AuthController::class,'change_password'])->name('change_password');
