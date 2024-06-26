@@ -15,7 +15,17 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->date('date');
-            $table->integer('state');
+            $table->integer('status');
+            $table->integer('winner_num_1');
+            $table->integer('winner_num_2');
+            $table->integer('winner_num_3');
+            $table->integer('winner_num_4');
+            $table->integer('winner_num_5');
+            $table->integer('lucky_num_1');
+            $table->integer('lucky_num_2');
+            $table->integer('lucky_num_3');
+            $table->integer('lucky_num_4');
+            $table->integer('lucky_num_5');
             $table->unsignedBigInteger('sorter_id')->nullable(true);
             $table->foreign('sorter_id')->references('id')->on('sorters');
         });

@@ -16,7 +16,11 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('code')->unique(); 
             $table->boolean('im_feeling_lucky')->default(false);
-            $table->json('numbers'); 
+            $table->integer('number_1');
+            $table->integer('number_2'); 
+            $table->integer('number_3'); 
+            $table->integer('number_4'); 
+            $table->integer('number_5');  
             $table->integer('price'); 
             $table->date('date');
             $table->unsignedBigInteger('lottery_id');
