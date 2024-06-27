@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Administrator;
 use App\Models\Sorter;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -79,7 +81,7 @@ class AuthController extends Controller
             return redirect()->back()->with("message","No esta permitido con esta cuenta");
         }
         //If the user is not authenticated, redirect back with a message.
-        return redirect()->back()->with("message","Debes logearte primero");
+        return redirect()->back()->with("message","Debes iniciar sesión primero");
     } 
     public function logout(){
         Auth::guard("admin")->logout();
@@ -88,13 +90,72 @@ class AuthController extends Controller
     }
 
     public function change_password_form(){
-        return view("auth.changePassword");
+        //Check if the user is authenticated as an admin, if the user is admin show the change password form.
+        if(auth()->guard("admin")->check()){
+            return view("auth.changePassword");
+        }
+        //Check if the user is authenticated as a sorter, if the user is sorter show the change password form.
+        if(auth()->guard("sorter")->check()){
+            return view("auth.changePassword");
+        }
+        //If the user is not authenticated, redirect back with a message.
+        return redirect()->back()->with("message","Debes iniciar sesión primero");
     }
 
     public function change_password(Request $request){
-        //Validate
+        
+        $admin = Auth::guard('admin')->user();
+        $sorter = Auth::guard('sorter')->user();
+        $id = 0;
+        $is_admin = false;
 
-        return view("auth.changePassword");
+        if($admin == null && $sorter != null){
+            $id = $sorter->id;
+        }
+
+        if($admin != null && $sorter == null){
+            $id = $admin->id;
+            $is_admin = true;
+        }
+
+        if($id == 0){
+            return redirect()->back()->with("message","No autorizado");
+        }
+        
+        // Show a messagge of error
+        $messages=[
+            'password1.required' => 'debe ingresar su nueva contraseña para cambiar',
+            'password2.required' => 'debe repetir su nueva contraseña para cambiar'
+        ];
+
+        // Validate the request data
+        $validated= $request->validate([
+            'password1'=>['required'],
+            'password2'=>['required']
+        ],$messages);
+        
+
+        if($request->password1 != $request->password2){
+
+            return redirect()->back()->with("error_password_diferent","Las contraseñas no coinciden");
+        }
+
+        $char = substr($request->password1, 0, 1);
+        if($char == "0" || strlen($request->password1) != 6){
+
+            return redirect()->back()->with("error_first_char","La contraseña es menor a seis dígitos o comienza con el número 0");
+        }
+
+        if($is_admin){
+            $admin = Administrator::find($id);
+            $admin->password = Hash::make($request->password1);;
+            $admin->save();
+            return redirect()->back()->with("successfully","Contrseña cambiada exitosamente.");
+        }
+        
+        $sorter = Sorter::find($id);
+        $sorter->password = Hash::make($request->password1);
+        $sorter->save();
+        return redirect()->back()->with("successfully","Contrseña cambiada exitosamente.");
     }
 }
-

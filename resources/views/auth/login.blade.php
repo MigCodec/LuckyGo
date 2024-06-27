@@ -58,10 +58,10 @@
               <p style="background-color: #f56558; color: #fff; margin-top: 0.5rem; border-radius: 0.375rem; font-size: 1rem; text-align: center; padding: 0.25rem;">{{$message}}</p>
               @enderror
             </div>
-             <!-- Login Button -->
+            <!-- Login Button -->
             <div style="margin-top: 1rem; text-align: center;">
               <button type="submit" style="margin-bottom: 10px; background-color: #3B82F6; color: #fff; font-weight: 500; border-radius: 0.375rem; font-size: 1.2rem; text-align: center; padding: 1rem 1.5rem; width: 100%; max-width: 10rem;">Acceder</button>
-             <!-- Success Message -->
+              <!-- Success Message -->
               @if(session('login_successfuly'))
               <p style="background-color: #2ECC71; color: #fff; border-radius: 0.7rem; font-size: 1rem; padding: 0.25rem;">{{session('login_successfuly')}}</p>
               @endif
