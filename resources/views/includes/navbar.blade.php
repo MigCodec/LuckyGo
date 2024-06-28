@@ -12,6 +12,7 @@
   
     @elseif(auth()->guard("sorter")->check())
     <!-- Links for sorter users -->
+    <li><a href="{{route("change_password_form")}}">Cambiar Contraseña</a></li>
     <li><a href="{{route("lotteries.index")}}">Sorteo</a></li>
     <li><a href="{{route("logout")}}">Cerrar Sesión</a></li>
     <!-- Link for unauthenticated users -->
