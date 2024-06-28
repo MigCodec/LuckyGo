@@ -12,6 +12,10 @@
   
     @elseif(auth()->guard("sorter")->check())
     <!-- Links for sorter users -->
+    @php
+     $sorter_id = auth()->guard("sorter")->user()->id;
+     @endphp
+    <li><a href="{{ route("sorters.edit_sorter", ['sorter' => $sorter_id]) }}">Editar Sorteador</a></li>
     <li><a href="{{route("change_password_form")}}">Cambiar Contraseña</a></li>
     <li><a href="{{route("lotteries.index")}}">Sorteo</a></li>
     <li><a href="{{route("logout")}}">Cerrar Sesión</a></li>
