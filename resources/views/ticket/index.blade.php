@@ -26,7 +26,7 @@ Users can select up to 5 numbers and choose the "I'm feeling lucky" option.-->
                             @php
                                 $number = $i * 6 + $j;
                             @endphp
-                            <td style="padding: 5px;">
+                            <td class="tooltip" style="padding: 5px;">
                                 <input type="checkbox" id="number_{{ $number }}" name="numbers[]" value="{{ $number }}" style="display: none">
                                 <label style="display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;" for="number_{{ $number }}">{{ $number }}</label>
                                 <style>
@@ -34,6 +34,7 @@ Users can select up to 5 numbers and choose the "I'm feeling lucky" option.-->
                                         background-color: #8fef90 !important;
                                     }
                                 </style>
+                                <span class="tooltip_text">Seleccione el número {{ $number }}</span>
                             </td>
                         @endfor
                     </tr>
@@ -43,8 +44,11 @@ Users can select up to 5 numbers and choose the "I'm feeling lucky" option.-->
         <!-- Option im feeling lucky for ticket purchase -->
         <div>
             <p>Billete: $2.000</p>
-            <input type="checkbox" id="im_feeling_lucky" name="im_feeling_lucky" value="1">
-            <label for="im_feeling_lucky">Categoría "Tendré Suerte" (+$1.000)</label>
+            <div class="tooltip">
+                <input type="checkbox" id="im_feeling_lucky" name="im_feeling_lucky" value="1">
+                <label for="im_feeling_lucky">Categoría "Tendré Suerte" (+$1.000)</label>
+                <span class="tooltip_text"> Participe del sorteo "Tendré Suerte"</span>
+            </div>
         </div>
         <div style="background-color: #add8e5; border-radius: 8px; margin: 15px auto; display: inline-block; padding: 5px;">
             <p>
@@ -53,8 +57,9 @@ Users can select up to 5 numbers and choose the "I'm feeling lucky" option.-->
                 dentro de este plazo serán incluidas en el sorteo correspondiente.
             </p>
         </div>
-        <div style="margin: 5px auto">
+        <div class="tooltip" style="margin: 5px auto; display:block; align-content:center;">
             <button type="submit" style="margin: 15px; background-color: #328000; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">Jugar</button>
+            <span class="tooltip_text">Enviar números seleccionados para jugar</span>
         </div>
     </form>
     <!-- Display success message after purchase -->
