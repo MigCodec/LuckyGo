@@ -43,10 +43,6 @@ Route::get('sorter', [SorterController::class,'index'])->name('sorters.index');
 Route::post('sorters/{sorter}/toggle', [SorterController::class,'toggle'])->name('sorters.toggle');
 Route::get('sorters/search', [SorterController::class,'search'])->name('sorters.search');
 
-// Routes for update the sorter
-Route::get('sorter/{sorter}/edit', [SorterController::class,'edit_sorter'])->name('sorters.edit_sorter');
-Route::put('sorter/{sorter}', [SorterController::class,'update_sorter'])->name('sorters.update_sorter');
-
 // Route for home page
 Route::get('home', [HomeController::class,"form"])->name("homeForm");
 
