@@ -9,4 +9,7 @@
     <input name="ticket_id"></input>
     <button type="submit">Buscar</button>
 </form>
+@if(isset($ticket))
+{{$ticket->id}}
+@endif
 @endsection

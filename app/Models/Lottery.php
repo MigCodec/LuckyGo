@@ -20,6 +20,7 @@ class Lottery extends Model
     protected $fillable = [
         'id',
         'date',
+        'status',
         'winner_num_1',
         'winner_num_2',
         'winner_num_3',

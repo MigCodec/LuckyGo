@@ -63,7 +63,7 @@ class TicketController extends Controller
         if($lottery==null){
             $lottery = Lottery::firstOrCreate([
                 'date'=>$restrict_dates['sunday'],
-                'state'=>0,
+                'status'=>0,
             ]);
         }
         $ticket = $lottery->tickets()->create([
@@ -85,7 +85,7 @@ class TicketController extends Controller
         $validate = $request->validate(
             ["ticket_id"=>["required"]
         ]);
-        $ticket_result = Ticket::where("id",$validate->ticket_id);        
+        $ticket_result = Ticket::where("id",$request->ticket_id);        
         return view("tickets.review",["ticket"]);
     }
 
