@@ -137,7 +137,7 @@ body{
     padding: 5px 0;
     position: absolute;
     z-index: 1;
-    bottom: 150%;
+    bottom: 110%;
     left: 50%;
     margin-left: -60px;
     }

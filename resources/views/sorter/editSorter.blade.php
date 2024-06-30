@@ -9,25 +9,28 @@
             @method('PUT')
             <!-- Sorter Name Field -->
             <div style="margin-bottom: 2.25rem; display: flex;">
-                <div style="margin-right: 2rem; flex: 1;">
+                <div class="tooltip" style="margin-right: 2rem; flex: 1;">
                     <label for="name" style="margin-bottom: 0.5rem; font-size: 0.875rem; font-weight: 500;">Nombre:</label>
                     <input type="text" id="name" name="name" value="{{ old('name', $sorter->name) }}" style="background-color: #F3F4F6; border: 1px solid #CBD5E0; font-size: 0.875rem; border-radius: 0.375rem; display: block; width: 100%; padding: 0.625rem;" required />
+                    <span class="tooltip_text">Ingrese nuevo nombre</span>
                     @error('name')
                     <p style="background-color: #f56558; color: #fff; margin-top: 0.5rem; border-radius: 0.375rem; font-size: 0.875rem; text-align: center; padding: 0.25rem;">{{ $message }}</p>
                     @enderror
                 </div>
                 <!-- Age Field -->
-                <div style="flex: 0.5;">
+                <div class="tooltip" style="flex: 0.5;">
                     <label for="age" style="margin-bottom: 0.5rem; font-size: 0.875rem; font-weight: 500;">Edad:</label>
                     <input type="number" id="age" name="age" value="{{ old('age', $sorter->age) }}" style="background-color: #F3F4F6; border: 1px solid #CBD5E0; font-size: 0.875rem; border-radius: 0.375rem; display: block; width: 100%; padding: 0.625rem;" required />
+                    <span class="tooltip_text">Ingrese nueva edad</span>
                     @error('age')
                     <p style="background-color: #f56558; color: #fff; margin-top: 0.5rem; border-radius: 0.375rem; font-size: 0.875rem; text-align: center; padding: 0.25rem;">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
             <!-- Submit Button -->
-            <div style="display: flex; justify-content: center;">
-                <button type="submit" style="background-color: #3B82F6; color: #fff; font-weight: 500; border-radius: 0.375rem; font-size: 0.875rem; text-align: center; padding: 0.625rem 1.25rem; width: 100%; max-width: 12rem;">Actualizar Datos</button>
+            <div class="tooltip" style="display: flex; justify-content: center;">
+                <button type="submit" style="background-color: #3B82F6; color: #fff; font-weight: 500; border-radius: 0.375rem; font-size: 0.875rem; text-align: center; padding: 0.625rem 1.25rem; width: 100%; max-width: 12rem; cursor: pointer;">Actualizar Datos</button>
+                <span class="tooltip_text">Guardar cambios</span>
             </div>
         </form>
         @if(session('message_conection_error'))
