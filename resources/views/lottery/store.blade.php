@@ -51,7 +51,7 @@
             <input name="lottery_id" type="hidden" value="{{$lottery->id}}"/>
             <!-- Select lucky numbers -->
             <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                <div style="width: 45%;">
+                <div class="tooltip" style="width: 45%;">
                     <div class="form-group">
                         <label for="numbers"><b>Sorteo</b></label>
                         <table style="margin-top: 10px;">
@@ -74,12 +74,13 @@
                                 </tr>
                             @endfor
                         </table>
+                      <span class="tooltip_text">Seleccione números ganadores</span>  
                     </div>
                 </div>
 
                 <div style="width: 1px; background-color: black; margin: 20px; margin-left: 40px; margin-top: 35px; margin-bottom: 5px;"></div>
             
-                <div style="width: 45%">
+                <div class="tooltip" style="width: 45%">
                     <div class="form-group">
                         <label for="lucky_numbers"><b>Tendré Suerte</b></label>
                         <table style="margin-top: 10px;">
@@ -101,13 +102,20 @@
                                     @endfor
                                 </tr>
                             @endfor
-                        </table>
+                        </table> 
                     </div>
+                    <span class="tooltip_text">Seleccione números con suerte ganadores</span> 
                 </div>
             </div>
             <!-- Submit and cancel buttons -->
-            <button type="submit" style="margin: 15px; background-color: #317C00; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; text-decoration: none; cursor: pointer;">Confirmar</button>
-            <a href="{{ route('lotteries.index') }}" style="margin: 15px; background-color: #EC2C00; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; text-decoration: none;">Cancelar</a>
+            <button class="tooltip" type="submit" style="margin: 15px; background-color: #317C00; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; text-decoration: none; cursor: pointer;">
+                Confirmar
+                <span class="tooltip_text">Confirme números seleccionados</span> 
+            </button>
+            <a class="tooltip" href="{{ route('lotteries.index') }}" style="margin: 15px; background-color: #EC2C00; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; text-decoration: none;">
+                Cancelar
+                <span class="tooltip_text">Cancelar y volver atrás</span> 
+            </a>
             @error('numbers')
             {{$message}}
             @enderror

@@ -27,9 +27,26 @@ class DatabaseSeeder extends Seeder
             'age'=>23,
             'email' => 'test@example.com',
         ]);
-        Administrator::factory()->create(['name'=>'Antonio Barraza',
-    'email'=>'antonio.barraza.guzman@gmail.com','password'=>Hash::make('Luckygo23')]);
-        Lottery::factory()->create(["date"=>Carbon::parse("2024-05-19"),'id'=>1,"state"=>0] );
-        Ticket::factory()->create(['code'=> '111','numbers'=>"\"['1','2','3','4','5']\"","price"=> 2000,"im_feeling_lucky"=>0,"date"=>Carbon::parse("2024-05-15"),"lottery_id"=>1]);
+        Administrator::factory()->create([
+            'name'=>'Antonio Barraza',
+            'email'=>'antonio.barraza.guzman@gmail.com',
+            'password'=>Hash::make('Luckygo23',
+            )]);
+        Lottery::factory()->create([
+            "date"=>Carbon::parse("2024-05-19"),
+            'id'=>1,"status"=>0,
+            ] );
+        Ticket::factory()->create([
+            'code'=> '111',
+            "price"=> 2000,
+            "number_1"=>1,
+            "number_2"=>2,
+            "number_3"=>3,
+            "number_4"=>4,
+            "number_5"=>5,
+            "im_feeling_lucky"=>0,
+            "date"=>Carbon::parse("2024-05-15"),
+            "lottery_id"=>1,
+        ]);
     }   
 }

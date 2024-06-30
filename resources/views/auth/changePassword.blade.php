@@ -38,10 +38,7 @@
                 <button type="submit" style="background-color: #3B82F6; color: #fff; font-weight: 500; border-radius: 0.375rem; font-size: 1.2rem; padding: 1rem 1.5rem; width: 100%; max-width: 10rem;">Cambiar</button>
                 <span class="tooltip_text">Envie cambio de contraseña</span>
               </div>
-                <!-- Success Message -->
-              @if(session('successfuly')) 
-              <p style="background-color: #2ECC71; color: #fff; border-radius: 0.7rem; font-size: 1rem; padding: 0.25rem;">{{session('successfuly')}}</p>
-              @endif
+              <!-- Success Message is in login.blade-->
               <!-- Error Message -->
               @if(session('error_password_diferent'))
               <p style="background-color: #f56558; color: #fff; border-radius: 0.7rem; font-size: 1rem; padding: 0.25rem;">{{session('error_password_diferent')}}</p>

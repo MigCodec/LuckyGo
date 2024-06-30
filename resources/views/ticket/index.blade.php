@@ -57,9 +57,11 @@ Users can select up to 5 numbers and choose the "I'm feeling lucky" option.-->
                 dentro de este plazo serán incluidas en el sorteo correspondiente.
             </p>
         </div>
-        <div class="tooltip" style="margin: 5px auto; display:block; align-content:center;">
-            <button type="submit" style="margin: 15px; background-color: #328000; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">Jugar</button>
-            <span class="tooltip_text">Enviar números seleccionados para jugar</span>
+        <div  style="margin: 5px auto; display:block; align-content:center;">
+            <button class="tooltip" type="submit" style="margin: 15px; background-color: #328000; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">
+                Jugar
+                <span class="tooltip_text">Enviar números seleccionados para jugar</span>
+            </button>
         </div>
     </form>
     <!-- Display success message after purchase -->

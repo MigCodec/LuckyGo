@@ -45,7 +45,7 @@ class AuthController extends Controller
                     return redirect()->intended(route('lotteries.index'));
                 }
                 Auth::guard('sorter')->logout();
-                return redirect()->back()->with("message","Sorteador Desabilitado");
+                return redirect()->back()->with("message","Sorteador Deshabilitado");
         }
         //Validate the admin user
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => 
@@ -91,11 +91,7 @@ class AuthController extends Controller
 
     public function change_password_form(){
         //Check if the user is authenticated as an admin, if the user is admin show the change password form.
-        if(auth()->guard("admin")->check()){
-            return view("auth.changePassword");
-        }
-        //Check if the user is authenticated as a sorter, if the user is sorter show the change password form.
-        if(auth()->guard("sorter")->check()){
+        if(auth()->guard("admin")->check() || auth()->guard("sorter")->check()){
             return view("auth.changePassword");
         }
         //If the user is not authenticated, redirect back with a message.
@@ -150,12 +146,12 @@ class AuthController extends Controller
             $admin = Administrator::find($id);
             $admin->password = Hash::make($request->password1);;
             $admin->save();
-            return redirect()->back()->with("successfully","Contrseña cambiada exitosamente.");
+            return redirect()->route("login")->with("change_password_successfully","Cambio exitoso. Ingerese con su nueva contraseña.");
         }
         
         $sorter = Sorter::find($id);
         $sorter->password = Hash::make($request->password1);
         $sorter->save();
-        return redirect()->back()->with("successfully","Contrseña cambiada exitosamente.");
+        return redirect()->route("login")->with("change_password_successfully","Cambio exitoso. Ingerese con su nueva contraseña.");
     }
 }

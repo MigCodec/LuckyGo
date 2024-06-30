@@ -7,10 +7,11 @@ Users can search for sorters by name or email-->
     <title>Registrar Sorteador</title>
 <h1>Lista De Sorteadores</h1>
 <!-- Search form for sorters -->
-<form action="{{route('sorters.search')}}" method="GET"><br>
+<form class="tooltip" action="{{route('sorters.search')}}" method="GET"><br>
     @csrf          
     <input id="search" name="q" type="text" placeholder="Ingrese nombre o correo electrónico">
     <input id="submit" type="submit" value="Buscar">
+    <span class="tooltip_text">Busque sorteadores por nombre o correo electrónico</span>
 </form>
 <!-- Display error message if there are no sorters -->
 @if (isset($error))
@@ -36,12 +37,13 @@ Users can search for sorters by name or email-->
                 <td>{{ $sorter->lotteries_count }}</td>
                 <td>
                     <!-- Form to toggle sorter status -->
-                    <form action="{{ route('sorters.toggle', $sorter->id) }}" method="POST">
+                    <form class="tooltip" action="{{ route('sorters.toggle', $sorter->id) }}" method="POST">
                         @csrf
                         <select name="status" onchange="this.form.submit()">
                             <option value="1" {{ $sorter->status ? 'selected' : '' }}>Habilitado</option>
                             <option value="0" {{ $sorter->status ? '' : 'selected' }}>Deshabilitado</option>
                         </select>
+                        <span class="tooltip_text">Cambie el estado de un sorteador</span>
                     </form>
                 </td>
             </tr>

@@ -156,4 +156,39 @@ class SorterController extends Controller
 
         return view('sorter.index', ['sorters' => $sorters]);
     }
+
+    /**
+    * 
+    */
+
+    public function edit_sorter (Sorter $sorter)
+    {
+        return view("sorter.editSorter", compact('sorter'));
+    }
+
+
+
+    /**
+    *
+    */
+
+    public function update_sorter(Request $request, Sorter $sorter)
+{
+    $request->validate([
+        'name' => ['required'],
+        'age' => ['required', 'numeric', 'between:18,65'],
+    ], [
+        'name.required' => 'Debe ingresar su nombre',
+        'age.required' => 'Debe ingresar su edad',
+        'age.numeric' => 'La edad debe ser numérica',
+        'age.between' => 'La edad no puede ser inferior a 18 y mayor a 65',
+    ]);
+
+    $sorter->update([
+        'name' => $request->name,
+        'age' => $request->age,
+    ]);
+
+    return redirect()->route('sorters.index')->with('success', 'Datos del sorteador actualizados correctamente.');
+}
 }

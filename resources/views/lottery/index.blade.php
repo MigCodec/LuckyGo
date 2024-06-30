@@ -54,8 +54,9 @@ This view displays a list of lotteries in a table format.-->
                 @if($lottery->status==1)
                 <div style="display:flex; text-align:center; align-items:center;">
                     No realizado
-                    <form method="GET" action="{{ route('lotteries.register',$lottery->id) }}">
+                    <form class="tooltip" method="GET" action="{{ route('lotteries.register',$lottery->id) }}">
                         <button type="submit" style="margin: 15px; background-color: #59D45C; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">Ingresar</button>
+                        <span class="tooltip_text">Ingrese nuevo sorteo</span>
                     </form>
                 </div>
                 @endif
