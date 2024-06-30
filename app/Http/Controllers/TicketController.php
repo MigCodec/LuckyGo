@@ -85,7 +85,7 @@ class TicketController extends Controller
         $validate = $request->validate(
             ["ticket_id"=>["required"]
         ]);
-        $ticket_result = Ticket::where("id",$validate->ticket_id);        
+        $ticket_result = Ticket::where("id",$request->ticket_id);        
         return view("tickets.review",["ticket"]);
     }
 
