@@ -66,12 +66,18 @@ class TicketController extends Controller
                 'status'=>0,
             ]);
         }
+        $array_number = json_decode(json_decode($request->numbers));
         $ticket = $lottery->tickets()->create([
-            'numbers' => json_decode($request->numbers),
+            'number_1'=>$array_number[0],
+            'number_2'=>$array_number[1],
+            'number_3'=>$array_number[2],
+            'number_4'=>$array_number[3],
+            'number_5'=>$array_number[4],
             'im_feeling_lucky' => $request->im_feeling_lucky?true:false,
             'price' => $request->price,
             'code'=> $code_number,
-            'date'=>$now,'lottery_id'=>$lottery->id,
+            'date'=>$now,
+            'lottery_id'=>$lottery->id,
         ]);
 
         return redirect()->route('ticket.index')->with("success","ticket generado")->with("ticket_code","LG".$code_number)->with("date", $now->format("d/m/Y H:i:s"));
