@@ -43,8 +43,6 @@ Route::get('sorter', [SorterController::class,'index'])->name('sorters.index');
 Route::post('sorters/{sorter}/toggle', [SorterController::class,'toggle'])->name('sorters.toggle');
 Route::get('sorters/search', [SorterController::class,'search'])->name('sorters.search');
 
-// Route for home page
-Route::get('home', [HomeController::class,"form"])->name("homeForm");
 
 // Routes for ticket purchasing
 Route::get('/tickets', [TicketController::class,'index'])->name('ticket.index');

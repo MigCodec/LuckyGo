@@ -11,7 +11,7 @@ class StoreLotteryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if(auth()->guard("admin")->check()){
+        if(auth()->guard("sorter")->check()){
             return true;
         }
         return false;
