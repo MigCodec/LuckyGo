@@ -92,7 +92,7 @@ class TicketController extends Controller
             ["ticket_id"=>["required"]
         ]);
         $ticket_result = Ticket::where("id",$request->ticket_id);        
-        return view("tickets.review",["ticket"]);
+        return view("ticket.review",["ticket"=>$ticket_result]);
     }
 
     /**

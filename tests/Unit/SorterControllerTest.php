@@ -8,13 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class SorterControllerTest extends TestCase
 {
     use RefreshDatabase;
-    /**
-     * A basic unit test example.
-     */
-    public function test_example(): void
-    {
-        $this->assertTrue(true);
-    }
+
     public function test_toggle():void{
         $status=false;
         $sorter = Sorter::factory()->create(["name"=>"soy un test","age"=>40,"email"=>"test@jaja.com","password"=>"password","status"=>$status]);

@@ -9,13 +9,6 @@
     <input name="ticket_id"></input>
     <button type="submit">Buscar</button>
 </form>
-@if(isset($ticket))
-{{$ticket->id}}
-@endif
-
-@extends('includes.navbar')
-
-@section('title', 'Revisar Ticket')
 
 @section('content')
 <form method="POST" action="{{ route('tickets.show') }}">
@@ -26,7 +19,7 @@
     <button type="submit">Verificar</button>
 </form>
 
-<!--poner if-->
+@if(isset($ticket))
 <div>
     <h2>Detalles de tu Billete</h2>
     <table border ="1">
@@ -37,15 +30,15 @@
         
         <tr>
             <td>
-               {{ticket->date}}
+               {{$ticket->date}}
          
             </td>
             <td>
-                {{ticket->number_1}}
-                {{ticket->number_2}}
-                {{ticket->number_3}}
-                {{ticket->number_4}}
-                {{ticket->number_5}}
+                {{$ticket->number_1}}
+                {{$ticket->number_2}}
+                {{$ticket->number_3}}
+                {{$ticket->number_4}}
+                {{$ticket->number_5}}
 
             </td>
         </tr>
@@ -101,7 +94,7 @@
                         <p> 400.000 </p>
                     </td>
 
-                    @if(ticket_gano_tendre_suerte())
+                    @if($ticket_gano_tendre_suerte())
                     <td>
                          <p> 400.000 </p>
                     </td>
@@ -119,8 +112,6 @@
         <h3> Sin Premio</h3>
     @endif
 </div>            
-
-<!--@if(isset($ticket))-->
 @endif
 
 @endsection
