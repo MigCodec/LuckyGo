@@ -22,6 +22,7 @@
     <!-- Link for unauthenticated users -->
      @else
      <li><a href="{{route("tickets.review")}}">Revisar Ticket</a></li>
+     <li><a href="{{route("ticket.index")}}">Comprar Ticket</a></li>
      <li><a href="{{route("login")}}">Iniciar Sesión</a></li>
     @endif
      
