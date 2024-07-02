@@ -27,7 +27,12 @@ class TicketController extends Controller
     {
         //
     }
-
+    /**
+     * Displays the pre-confirmation view for a ticket.
+     *
+     * @param \App\Http\Requests\StoreTicketRequest $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function pre_confirmation(StoreTicketRequest $request){
         
         $price = $request->im_feeling_lucky ? 3000 : 2000;
@@ -100,6 +105,10 @@ class TicketController extends Controller
             $ticket_result->win_feeling_lucky = $ticket_result->get_win_im_feeling_lucky();
         }
         dd($ticket_result);
+
+        if (!$ticket_result) {
+            return back()->with('error', 'No se encontró ningún billete con ese código.');
+        }
         return view('ticket.review',["ticket"=>$ticket_result]);
         
 
@@ -129,6 +138,9 @@ class TicketController extends Controller
     {
         //
     }
+    /**
+     * Show the ticket.review view
+     */
     public function show_form(){
         return view('ticket.review');
     }

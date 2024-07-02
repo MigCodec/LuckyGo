@@ -47,6 +47,9 @@ class Sorter extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    /**
+     * Returns has many lotteries there.
+     */
     public function lotteries(){
         return $this->hasmany(Lottery::class);
     }

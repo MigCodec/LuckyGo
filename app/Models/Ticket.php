@@ -30,6 +30,13 @@ class Ticket extends Model
     public function lottery(){
         return $this->belongsTo(Lottery::class);
     }
+
+    /**
+     * Checks if the current ticket is a winner.
+     *
+     * @return bool
+     */
+
     public function get_win(){
         $lottery = $this->lottery;
         if($this->number_1 == $lottery->winner_num_1){
@@ -45,6 +52,13 @@ class Ticket extends Model
         }
         return false;
     }
+
+    /**
+     * Checks if the current ticket is a winner based on lucky numbers.
+     *
+     * @return bool
+     */
+
     public function get_win_im_feeling_lucky(){
         $lottery = $this->lottery;
         if($this->number_1 == $lottery->lucky_num_1){

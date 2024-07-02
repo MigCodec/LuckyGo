@@ -159,8 +159,10 @@ class SorterController extends Controller
     }
 
     /**
-    * 
-    */
+     * Displays the edit view for the sorter.
+     * @param \Illuminate\Models\Sorter $sorter
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 
     public function edit_sorter (Sorter $sorter)
     {
@@ -170,9 +172,12 @@ class SorterController extends Controller
 
 
     /**
-    *
-    */
-
+     * Updates a Sorter object with the data provided in the request.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Models\Sorter $sorter
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function update_sorter(Request $request, Sorter $sorter)
 {
     $request->validate([
