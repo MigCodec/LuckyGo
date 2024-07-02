@@ -38,6 +38,8 @@ class Lottery extends Model
         'sumPriceLuckytTickets',
         'sumTotalTickets',
         'count_total_tickets',
+        'jackspot',
+        'lucky_jackspot',
     ];
     protected $dates = ['date'];
     public function tickets():HasMany{
@@ -61,28 +63,36 @@ class Lottery extends Model
     public function getSumPriceLuckyTicketsAttribute(){
         return $this->lucky_tickets()->sum('price')??0;
     }
-    public function getCountWinTicketsAtrribute(){
+    public function getCountWinTicketsAttribute(){
         return $this->tickets()->
-        where("number_1","winner_num_1")->
-        where("number_2","winner_num_2")->
-        where("number_3","winner_num_3")->
-        where("number_4","winner_num_4")->
-        where("number_5","winner_num_5")->
-        count();
+        where("number_1",$this->winner_num_1)->
+        where("number_2",$this->winner_num_2)->
+        where("number_3",$this->winner_num_3)->
+        where("number_4",$this->winner_num_4)->
+        where("number_5",$this->winner_num_5)->
+        count()??0;
     }
-    public function getCountWinLuckyTicketsAtrribute(){
-        return $this->tickets()->
-        where("number_1","lucky_num_1")->
-        where("number_2","lucky_num_2")->
-        where("number_3","lucky_num_3")->
-        where("number_4","lucky_num_4")->
-        where("number_5","lucky_num_5")->count();
+    public function getCountWinLuckyTicketsAttribute(){
+        return $this->lucky_tickets()->
+        where("number_1",$this->lucky_num_1)->
+        where("number_2",$this->lucky_num_2)->
+        where("number_3",$this->lucky_num_3)->
+        where("number_4",$this->lucky_num_4)->
+        where("number_5",$this->lucky_num_5)->count()??0;
     }
     public function getJackpotAttribute(){
-        return $this->getSumPriceNormaTicketsAttribute()/$this->getCountWinTicketsAtrribute();
+        $count = $this->getCountWinTicketsAttribute();
+        if($count==0){
+            return 0;
+        }
+        return $this->getSumPriceNormalTicketsAttribute()/$count;
     }
     public function getLuckyJackpotAttribute(){
-        return $this->getSumPriceLuckyTicketsAttribute()/$this->getCountWinLuckyTicketsAtrribute();
+        $count = $this->getCountWinLuckyTicketsAttribute();
+        if($count==0){
+            return 0;
+        }
+        return $this->getSumPriceLuckyTicketsAttribute()/$count;
     }
     /*protected function sum_price_normal_tickets():Attribute{
         return new Attribute(get: fn()=>$this->normal_tickets()->sum('price')??0,);

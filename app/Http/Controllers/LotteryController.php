@@ -21,7 +21,6 @@ class LotteryController extends Controller
                 $lottery->sorter_name = $lottery->sorter->name;
             }
         }
-        dd($lotteries);
         return view("lottery.index",["lotteries"=> $lotteries]);
     }
 

@@ -109,7 +109,15 @@ class TicketController extends Controller
         if (!$ticket_result) {
             return back()->with('error', 'No se encontró ningún billete con ese código.');
         }
-        return view('ticket.review',["ticket"=>$ticket_result,"lottery"=>$ticket_result->lottery]);
+        $lottery = $ticket_result->lottery;
+        $lottery->jackpot = $lottery->getJackpotAttribute();
+        $lottery->lucky_jackpot = $lottery->getLuckyJackpotAttribute();
+        return view('ticket.review',[
+            "ticket"=>$ticket_result,
+            "lottery"=>$lottery,
+            "jackpot"=>$lottery->getJackpotAttribute(),
+            "lucky_jackpot"=>$lottery->getLuckyJackpotAttribute(),
+        ]);
         
 
     
