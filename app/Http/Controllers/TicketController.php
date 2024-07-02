@@ -27,6 +27,7 @@ class TicketController extends Controller
     {
         //
     }
+    
     /**
      * Displays the pre-confirmation view for a ticket.
      *
@@ -138,6 +139,7 @@ class TicketController extends Controller
     {
         //
     }
+
     /**
      * Show the ticket.review view
      */
