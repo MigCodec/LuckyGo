@@ -65,7 +65,7 @@
                 </tr>
             </table>
 
-            @if( $ticket->get_win() )
+            @if( $ticket->win )
                 <div style="text-align: center; margin-top: 20px;">
                     <h3 style="color: green;">¡Tienes premio!</h3>
                     <table style="margin: 0 auto; border-collapse: collapse; width: 80%;">
@@ -74,9 +74,9 @@
                             <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0;">"Tendré Suerte"</th>
                         </tr>
                         <tr>
-                            <td style="border: 1px solid #ccc; padding: 10px;">400.000</td>
-                            @if( $ticket->get_win_im_feeling_lucky()  )
-                                <td style="border: 1px solid #ccc; padding: 10px;">400.000</td>
+                            <td style="border: 1px solid #ccc; padding: 10px;">{{$ticket->win_amount}}</td>
+                            @if( $ticket->win_im_feeling_lucky )
+                                <td style="border: 1px solid #ccc; padding: 10px;">{{$ticket->win_im_feeling_lucky}}</td>
                             @else
                                 <td style="border: 1px solid #ccc; padding: 10px; color: #7D3C98; font-weight: bold;">Sin premio</td>
                             @endif
