@@ -57,18 +57,22 @@ class LotteryController extends Controller
                 return back()->with('normal_numbers_len', 'Ingrese solo 5 números');
             }
         }else{
-            return back()->with('normal_numbers_len', 'Ingrese solo 5 números');
+            return back()->with('normal_numbers_len', 'Debe ingresar los números del pozo normal');
         }
-        if(isset($lucky_numbers)){
-            if(count($lucky_numbers)==5){
-                $lottery->lucky_num_1=$lucky_numbers[0];
-                $lottery->lucky_num_2=$lucky_numbers[1];
-                $lottery->lucky_num_3=$lucky_numbers[2];
-                $lottery->lucky_num_4=$lucky_numbers[3];
-                $lottery->lucky_num_5=$lucky_numbers[4];
+        if($lottery->sum_price_lucky_tickets!=0){
+            if(isset($lucky_numbers)){
+                if(count($lucky_numbers)==5){
+                    $lottery->lucky_num_1=$lucky_numbers[0];
+                    $lottery->lucky_num_2=$lucky_numbers[1];
+                    $lottery->lucky_num_3=$lucky_numbers[2];
+                    $lottery->lucky_num_4=$lucky_numbers[3];
+                    $lottery->lucky_num_5=$lucky_numbers[4];
+                }else{
+                    return back()->with('normal_numbers_len', 'Ingrese solo 5 números');
+                }
             }else{
-                return back()->with('normal_numbers_len', 'Ingrese solo 5 números');
-            }
+                return back()->with('normal_numbers_len', 'Debe ingresar los números del pozo tendré suerte');
+            } 
         }
         $lottery->sorter_id=$sorter->id;
         $lottery->save();
