@@ -79,6 +79,10 @@
                 <p style="background-color: #f56558; color: #fff; border-radius: 0.375rem; font-size: 1rem; padding: 0.25rem;">{{session('message_conection_error')}}</p>
                 @endif
             </div>
+            <!-- Success Message -->
+            @if(session('register_successfully'))
+            <p style="background-color: #2ECC71; color: #fff; border-radius: 0.7rem; font-size: 1rem; padding: 0.25rem;">{{session('register_successfully')}}</p>
+            @endif
         </form>
     </div>
 

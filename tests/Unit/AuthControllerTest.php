@@ -14,17 +14,7 @@ use Illuminate\Support\Facades\Hash;
 class AuthControllerTest extends TestCase
 {
     use RefreshDatabase;
-    /*
-     * A basic feature test example.
-     
-    public function test_example(): void
-    {
-        $response = $this->get('/');
 
-        $response->assertStatus(200);
-    }*/
-
-    
     //For admin test
     public function test_change_password_admin():void{
 
@@ -37,6 +27,8 @@ class AuthControllerTest extends TestCase
 
     }
 
+    //For sorter test
+
     public function test_change_password_sorter():void{
 
         $sorter = Sorter::factory()->create(["name"=>"test2","age"=>40,"email"=>"test@test.com","password"=>"password","status"=>1]);
@@ -48,22 +40,24 @@ class AuthControllerTest extends TestCase
 
     }
 
-    //For sorter test
-    /*public function change_password_test(Request $request){
-        
-        $sorter = Sorter::create(["name"=>"test2","age"=>40,"email"=>"test@test.com","password"=>"password","status"=>1]);
-        $authController = new AuthController();
-public function test_toggle():void{
-        $sorter = Sorter::create(["name"=>"soy un test","age"=>40,"email"=>"test@jaja.com","password"=>"password","status"=>1]);
-        $sorterController = new SorterController();
-        $sorterController->toggle($sorter);
-        $sorter_changed = Sorter::where("email","test@jaja.com")->first();
-        echo("##########################");
-        var_dump($sorter_changed->status);
-        $this->assertTrue(($sorter_changed->status==1));
+    public function test_sorter_login(): void
+    {
+    
+        $sorter = Sorter::factory()->create([
+            'name' => 'Sorter',
+            'age' => 30,
+            'email' => 'sorter@ejemplo.com',
+            'password' => Hash::make('password123'),
+            'status' => 1
+        ]);
+
+        $response = $this->post('/login', [
+            'email' => 'sorter@ejemplo.com',
+            'password' => 'password123'
+        ]);
+
+        $response->assertRedirect(route('lotteries.index'));
+        $this->assertAuthenticatedAs($sorter, 'sorter');
     }
 
-
-    }
-    */
 }
