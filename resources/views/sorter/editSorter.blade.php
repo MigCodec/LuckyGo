@@ -1,6 +1,7 @@
 @extends('includes.navbar')
 
 @section('content')
+<title>Editar Sorteador</title>
 <div class="container">
     <h1 style="margin-bottom: 50px; font-size: 2.5rem; font-weight: 800; line-height: 1.5; text-align: center;">Actualizar Datos del Sorteador</h1>
     <div style="max-width: 28rem; margin: -2rem auto 0 auto; padding: 4rem; background-color: #fff; border-radius: 1.5rem; border: 4px solid #D1CEC5; line-height:auto;">

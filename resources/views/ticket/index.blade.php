@@ -5,6 +5,7 @@
 @section('content')
 <!--This view allows users to purchase lottery tickets by selecting numbers from 1 to 30.
 Users can select up to 5 numbers and choose the "I'm feeling lucky" option.-->
+<title>Comprar</title>
 <div style="text-align: center; font-family: Arial, sans-serif;">
     <h1>Compra de billetes de lotería</h1>
     

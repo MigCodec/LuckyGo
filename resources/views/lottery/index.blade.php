@@ -3,6 +3,7 @@
 
 <!--
 This view displays a list of lotteries in a table format.-->
+<title>Sorteos</title>
 <div style="text-align: center;">
     <h1>Listado de Sorteos</h1>
     <div style="justify-content: center; align-items: center; display: flex;">

@@ -5,6 +5,7 @@
 
 
 @section('content')
+<title>Ver Billetes</title>
 <div style="width: 80%; margin: 0 auto; text-align: center;">
     <h1>Verificador de Billetes</h1>
     

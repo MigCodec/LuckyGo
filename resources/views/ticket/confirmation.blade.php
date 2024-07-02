@@ -3,6 +3,7 @@
 @section('title', 'Confirmación de Compra')
 
 @section('content')
+<title>Confirmación</title>
 <!--This view displays a confirmation page for the purchase of lottery tickets.-->
 <div style="text-align: center; font-family: Arial, sans-serif; ">
     <div style="display: inline-block; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);">

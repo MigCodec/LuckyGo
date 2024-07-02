@@ -53,12 +53,6 @@ class AuthController extends Controller
             return redirect()->intended(route('sorters.index'));
         }
         return redirect()->back()->with("message","usuario no registrado o contraseña incorrecta");
-        /*
-        if(auth()->attempt($request->only('email','password'),$request->remember)){
-            return redirect()->route("registerForm");
-        }
-        return redirect()->back()->with("message","Credenciales incorrectas");
-        */
     }
 
     /**
@@ -68,6 +62,7 @@ class AuthController extends Controller
     public function loginForm(){
       return view("auth.login");
     }
+    
     /**
      * Displays the register form checking the user. 
      */
@@ -83,6 +78,7 @@ class AuthController extends Controller
         //If the user is not authenticated, redirect back with a message.
         return redirect()->back()->with("message","Debes iniciar sesión primero");
     } 
+
     public function logout(){
         Auth::guard("admin")->logout();
         Auth::guard("sorter")->logout();

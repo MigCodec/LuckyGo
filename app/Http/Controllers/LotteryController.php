@@ -15,31 +15,6 @@ class LotteryController extends Controller
      */
     public function index()
     {
-        /*$lotteries = Lottery::select(
-            'lotteries.id',
-            'lotteries.date',
-            DB::raw('IFNULL(COUNT(tl.id),0)+IFNULL(COUNT(tn.id),0) AS tickets_count'),
-            DB::raw('IFNULL(SUM(tn.price),0) AS sum_normal_ticket'),
-            DB::raw('IFNULL(SUM(tl.price),0) AS sum_lucky_ticket'),
-            DB::raw('IFNULL(SUM(tn.price),0) + IFNULL(SUM(tl.price),0) AS total'),
-            DB::raw('IFNULL(a.id," ") AS register_by'),
-            DB::raw('IF(NOW()<lotteries.date,0,IF(a.id IS NULL,1,0)) AS state'),
-        )->leftjoin('tickets as tn', function ($join) {
-            $join->on('lotteries.id', '=', 'tn.lottery_id')
-                 ->where('tn.im_feeling_lucky', '=', 0);
-        })->leftjoin('tickets as tl', function ($join) {
-            $join->on('lotteries.id', '=', 'tl.lottery_id')
-                 ->where('tl.im_feeling_lucky', '=', 1);
-        })->leftjoin('administrators as a',function($join){
-            $join->on('lotteries.admin_id','=','a.id');
-        })->groupBy('lotteries.id','lotteries.date','lotteries.state','a.id')->get();
-        */
-        
-        /*$lotteries = Lottery::withCount('tickets','normal_tickets','lucky_tickets')
-        ->withSum('normal_tickets','price')
-        ->withSum('lucky_tickets','price')
-        ->withSum('tickets','price')->get();
-        */
         $lotteries = Lottery::All();
         $lottery = Lottery::firstOrFail();
     
@@ -53,9 +28,11 @@ class LotteryController extends Controller
     {
         //
     }
+
     public function register(Lottery $lottery){
         return view('lottery.store',['lottery'=> $lottery]);
     }
+    
     /**
      * Store a newly created resource in storage.
      */

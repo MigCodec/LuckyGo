@@ -120,6 +120,7 @@ class SorterController extends Controller
     {
         //
     }
+    
     /**
      * This method allows an admin to toggle the status of a sorter. If the authenticated user
      * is an admin, it inverts the current status of the specified sorter and saves the change.
