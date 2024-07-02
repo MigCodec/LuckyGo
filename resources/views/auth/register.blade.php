@@ -81,8 +81,10 @@
             </div>
             <!-- Success Message -->
             @if(session('register_successfully'))
-            <p style="background-color: #2ECC71; color: #fff; border-radius: 0.7rem; font-size: 1rem; padding: 0.25rem;">{{session('register_successfully')}}</p>
+            <div style="text-align:center">
+            <p style="background-color: #2ECC71; color: #fff; border-radius: 0.7rem; font-size: 1rem; padding: 0.25rem; text-align:center; max-width: 100%; display:inline-block">{{session('register_successfully')}}</p>
             @endif
+            </div>
         </form>
     </div>
 
