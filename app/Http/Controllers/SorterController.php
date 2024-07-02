@@ -75,12 +75,12 @@ class SorterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'age' => $request->age,
-            'status' => 0,
+            'status' => 1,
             'password' => Hash::make($password)
         ]);
 
         // Redirect the user back with a success message
-        return redirect()->back()->with("message", "sorteador creado!");
+        return redirect()->back()->with("register_successfully", "Sorteador creado con exito");
     }
 
     /**
@@ -154,7 +154,7 @@ class SorterController extends Controller
             return view('sorter.index', ['sorters' => $sorters, 'error' => 'No se encontraron coincidencias']);
         }
 
-        return view('sorter.index', ['sorters' => $sorters]);
+        return view('sorter.index', ['sorters' => $sorters])->with();
     }
 
     /**
