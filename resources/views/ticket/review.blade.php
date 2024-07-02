@@ -19,7 +19,6 @@
     @if(session('error'))
         <div style="text-align: center; color: red; font-weight: bold; margin-top: 20px;">{{ session('error') }}</div>
     @endif
-
     @if(isset($ticket))
     <div>
         <h2>Detalles de tu Billete</h2>
@@ -66,7 +65,7 @@
             </tr>
         </table>
 
-        @if($ticket->gano())
+        @if($ticket->gano)
             <div style="text-align: center; margin-top: 20px;">
                 <h3 style="color: green;">¡Tienes premio!</h3>
                 <table style="margin: 0 auto; border-collapse: collapse; width: 80%;">
@@ -76,7 +75,7 @@
                     </tr>
                     <tr>
                         <td style="border: 1px solid #ccc; padding: 10px;">400.000</td>
-                        @if($ticket->ticket_gano_tendre_suerte())
+                        @if($ticket->ticket_gano_tendre_suerte)
                             <td style="border: 1px solid #ccc; padding: 10px;">400.000</td>
                         @else
                             <td style="border: 1px solid #ccc; padding: 10px; color: purple; font-weight: bold;">Sin premio</td>
