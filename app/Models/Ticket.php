@@ -30,4 +30,34 @@ class Ticket extends Model
     public function lottery(){
         return $this->belongsTo(Lottery::class);
     }
+    public function get_win(){
+        $lottery = $this->lottery;
+        if($this->number_1 == $lottery->winner_num_1){
+            if($this->number_2 == $lottery->winner_num_2){
+                if($this->number_3 == $lottery->winner_num_3){
+                    if($this->number_4 == $lottery->winner_num_4){
+                        if($this->number_5 == $lottery->winner_num_5){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    public function get_win_im_feeling_lucky(){
+        $lottery = $this->lottery;
+        if($this->number_1 == $lottery->lucky_num_1){
+            if($this->number_2 == $lottery->lucky_num_2){
+                if($this->number_3 == $lottery->lucky_num_3){
+                    if($this->number_4 == $lottery->lucky_num_4){
+                        if($this->number_5 == $lottery->lucky_num_5){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }

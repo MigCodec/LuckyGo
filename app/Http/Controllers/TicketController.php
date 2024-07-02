@@ -89,10 +89,20 @@ class TicketController extends Controller
     public function show(Request $request)
     {
         $validate = $request->validate(
-            ["ticket_id"=>["required"]
+            ["ticket_code"=>["required"]
         ]);
-        $ticket_result = Ticket::where("id",$request->ticket_id)->first();        
-        return view("ticket.review",["ticket"=>$ticket_result]);
+
+        $code = substr($request->ticket_code,2);
+        $ticket_result = Ticket::where("code",$code)->first();
+        $ticket_result->win = $ticket_result->get_win();
+        if($ticket_result->im_feeling_lucky){
+            $ticket_result->win_feeling_lucky = $ticket_result->get_win_im_feeling_lucky();
+        }
+        dd($ticket_result);
+        return view('ticket.review',["ticket"=>$ticket_result]);
+        
+
+    
     }
 
     /**
@@ -118,7 +128,8 @@ class TicketController extends Controller
     {
         //
     }
-    public function review(){
-       return view('ticket.review');
+    public function show_form(){
+        return view('ticket.review');
     }
+
 }
