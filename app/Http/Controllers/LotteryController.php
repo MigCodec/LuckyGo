@@ -103,7 +103,7 @@ class LotteryController extends Controller
      */
     public static function getMondayAndSundayOfThisWeek() {
         // Set the timezone to avoid discrepancies
-        date_default_timezone_set('America/New_York');
+        date_default_timezone_set('America/Santiago');
     
         // Get the day of the week (0 for Sunday, 1 for Monday, etc.)
         $dayOfWeek = date('w');

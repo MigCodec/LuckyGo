@@ -3,6 +3,7 @@
 @section('title', 'Comprar Billete de Lotería')
 
 @section('content')
+<title>Registrar Sorteo</title>
 <!--This view allows users to select their numbers to buy lottery tickets.-->
 <div style="text-align: center;">
     <h1>Registrar Sorteo</h1>
@@ -39,14 +40,14 @@
                     ${{number_format($lottery->sum_price_lucky_tickets,0,',','.')}}
                 </td>
                 <td>
-                    ${{number_format($lottery->sum_total_tickets,0,',','.')   }}
+                    ${{number_format($lottery->sum_total_tickets,0,',','.')}}
                 </td>
             </tr>
         </table>
     </div>
 
     <div style="display: flex; justify-content: center; margin-top: 20px;">
-        <form method="POST" action="{{ route('lotteries.store') }}" style="text-align: center;">
+        <form method="POST" action="{{route('lotteries.store')}}" style="text-align: center;">
             @csrf
             <input name="lottery_id" type="hidden" value="{{$lottery->id}}"/>
             <!-- Select lucky numbers -->
@@ -121,7 +122,70 @@
             @enderror
         </form>
     </div>
+    <!-- Display error message if user doesn't select exactly 5 numbers -->
+    @if ($errors->has('numbers_only_normal'))
+        <div style="background-color: #f56558; border: 10px solid #f56558; color: white; padding: 10px; border-radius: 5px; max-width: 300px; margin: 10px auto;">
+            Debe seleccionar exactamente 5 números
+        </div>
+    @endif
+    @if ($errors->has('numbers_normal_lucky'))
+        <div style="background-color: #f56558; border: 10px solid #f56558; color: white; padding: 10px; border-radius: 5px; max-width: 300px; margin: 10px auto;">
+            Debe seleccionar exactamente 5 números para el sorteo normal y 5 en tendré suerte
+        </div>
+    @endif
+    
 </div>
+<!-- JavaScript for checkbox functionality -->
+<script>
+    if(false){ //aqui tiene que ir la condicion para cuando no hay 'tendre suerte'
+        document.addEventListener('DOMContentLoaded', function () {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        var checkedCount = 0;
+
+        checkboxes.forEach(function (checkbox) {
+            if (checkbox.checked && !checkbox.getAttribute('id').includes('im_feeling_lucky')) {
+                checkedCount++;
+            }
+
+            checkbox.addEventListener('change', function () {
+                if (this.checked && !this.getAttribute('id').includes('im_feeling_lucky')) {
+                    if (checkedCount >= 5) {
+                        this.checked = false;
+                    } else {
+                        checkedCount++;
+                    }
+                } else if (!this.checked && !this.getAttribute('id').includes('im_feeling_lucky')) {
+                    checkedCount--;
+                }
+            });
+        });
+    });
+    }else{
+        document.addEventListener('DOMContentLoaded', function () {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        var checkedCount = 0;
+
+        checkboxes.forEach(function (checkbox) {
+            if (checkbox.checked && !checkbox.getAttribute('id').includes('im_feeling_lucky')) {
+                checkedCount++;
+            }
+
+            checkbox.addEventListener('change', function () {
+                if (this.checked && !this.getAttribute('id').includes('im_feeling_lucky')) {
+                    if (checkedCount >= 10) {
+                        this.checked = false;
+                    } else {
+                        checkedCount++;
+                    }
+                } else if (!this.checked && !this.getAttribute('id').includes('im_feeling_lucky')) {
+                    checkedCount--;
+                }
+            });
+        });
+    });
+    }
+    
+</script>
 
 <style>
         .lottery_table {
