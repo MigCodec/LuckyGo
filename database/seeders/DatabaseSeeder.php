@@ -36,6 +36,10 @@ class DatabaseSeeder extends Seeder
             "date"=>Carbon::parse("2024-05-19"),
             'id'=>1,"status"=>0,
             ] );
+        Lottery::factory()->create([
+                "date"=>Carbon::parse("2024-05-19"),
+                'id'=>2,"status"=>0,
+                ] );
         Ticket::factory()->create([
             'code'=> '111',
             "price"=> 2000,
@@ -45,8 +49,20 @@ class DatabaseSeeder extends Seeder
             "number_4"=>4,
             "number_5"=>5,
             "im_feeling_lucky"=>0,
-            "date"=>Carbon::parse("2024-05-15"),
+            "date"=>Carbon::parse("2024-05-26"),
             "lottery_id"=>1,
+        ]);
+        Ticket::factory()->create([
+            'code'=> '112',
+            "price"=> 3000,
+            "number_1"=>1,
+            "number_2"=>2,
+            "number_3"=>3,
+            "number_4"=>4,
+            "number_5"=>5,
+            "im_feeling_lucky"=>1,
+            "date"=>Carbon::parse("2024-05-23"),
+            "lottery_id"=>2,
         ]);
     }   
 }

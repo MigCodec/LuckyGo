@@ -78,9 +78,8 @@
                       <span class="tooltip_text">Seleccione números ganadores</span>  
                     </div>
                 </div>
-
+                @if($lottery->sum_price_lucky_tickets!=0)
                 <div style="width: 1px; background-color: black; margin: 20px; margin-left: 40px; margin-top: 35px; margin-bottom: 5px;"></div>
-            
                 <div class="tooltip" style="width: 45%">
                     <div class="form-group">
                         <label for="lucky_numbers"><b>Tendré Suerte</b></label>
@@ -107,6 +106,7 @@
                     </div>
                     <span class="tooltip_text">Seleccione números con suerte ganadores</span> 
                 </div>
+                @endif
             </div>
             <!-- Submit and cancel buttons -->
             <button class="tooltip" type="submit" style="margin: 15px; background-color: #317C00; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; text-decoration: none; cursor: pointer;">

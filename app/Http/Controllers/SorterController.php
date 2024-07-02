@@ -195,7 +195,7 @@ class SorterController extends Controller
         'age' => $request->age,
     ]);
 
-    return redirect()->route('sorters.index')->with('success', 'Datos del sorteador actualizados correctamente.');
+    return redirect()->back()->with('successfully', 'Datos del sorteador actualizados correctamente.');
 }
 
 }

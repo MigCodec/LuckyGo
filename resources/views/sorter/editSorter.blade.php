@@ -37,6 +37,9 @@
         @if(session('message_conection_error'))
         <p style="background-color: #f56558; color: #fff; border-radius: 0.375rem; font-size: 1rem; padding: 0.25rem; margin-top: 1rem; text-align: center;">{{ session('message_conection_error') }}</p>
         @endif
+        @if(session('successfully'))
+        <p style="background-color: #2ECC71; color: #fff; border-radius: 0.7rem; font-size: 1rem; padding: 0.25rem;">{{session('successfully')}}</p>
+        @endif
     </div>
 </div>
 @endsection
