@@ -24,7 +24,7 @@
     @if(isset($ticket))
         <div>
             <h2>Detalles de tu Billete</h2>
-            <table style="margin: 0 auto; border-collapse: collapse; width: 80%;">
+            <table style="margin: 0 auto; border-collapse: collapse; width: 100%;">
                 <tr> 
                     <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0;">Fecha del Billete</th>
                     <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0;">Números Jugados</th>
@@ -32,39 +32,40 @@
                 <tr>
                     <td style="border: 1px solid #ccc; padding: 10px;">{{ $ticket->date }}</td>
                     <td style="border: 1px solid #ccc; padding: 10px;">
-                        <b>{{ $ticket->number_1 }},
-                        {{ $ticket->number_2 }},
-                        {{ $ticket->number_3 }},
-                        {{ $ticket->number_4 }},
-                        {{ $ticket->number_5 }}
+                        <b>
+                            <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $ticket->number_1 }}</span>
+                            <span style="display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $ticket->number_2 }}</span>
+                            <span style="display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $ticket->number_3 }}</span>
+                            <span style="display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $ticket->number_4 }}</span>
+                            <span style="display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $ticket->number_5 }}</span>
                         </b>
                     </td>
                 </tr>
             </table>
 
             <h2>Detalles del Sorteo</h2>
-            <table style="margin: 20px auto; border-collapse: collapse; width: 80%;">
+            <table style="margin: 20px auto; border-collapse: collapse; width: 100%;">
                 <tr>
                     <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0;">Fecha del Sorteo</th>
                     <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0;">Números Ganadores</th>
                     <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0;">Números Ganadores "Tendré Suerte"</th>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid #ccc; padding: 10px;"> 
+                    <td style="border: 1px solid #ccc; padding: 20px;"> 
                         <b>{{ $ticket->lottery->date }}</b></td>
-                    <td style="border: 1px solid #ccc; padding: 10px;">
-                       <b> {{ $lottery->winner_num_1 }},
-                        {{ $lottery->winner_num_2 }},
-                        {{ $lottery->winner_num_3 }},
-                        {{ $lottery->winner_num_4 }},
-                        {{ $lottery->winner_num_5 }} </b>
+                    <td style="border: 1px solid #ccc; padding: 20px;">
+                       <b> <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->winner_num_1 }} </span>
+                       <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;"> {{ $lottery->winner_num_2 }} </span>
+                       <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->winner_num_3 }} </span>
+                       <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->winner_num_4 }} </span>
+                       <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->winner_num_5 }} </span> </b>
                     </td>
-                    <td style="border: 1px solid #ccc; padding: 10px;">
-                        <b>{{ $lottery->lucky_num_1 }},
-                        {{ $lottery->lucky_num_2 }},
-                        {{ $lottery->lucky_num_3 }},
-                        {{ $lottery->lucky_num_4 }},
-                        {{ $lottery->lucky_num_5 }}
+                    <td style="border: 1px solid #ccc; padding: 20px;">
+                        <b><span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->lucky_num_1 }} </span>
+                        <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->lucky_num_2 }} </span>
+                        <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->lucky_num_3 }} </span>
+                        <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->lucky_num_4 }} </span>
+                        <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->lucky_num_5 }} </span>
                         </b>
                     </td>
                 </tr>
