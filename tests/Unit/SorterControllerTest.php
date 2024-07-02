@@ -4,7 +4,8 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use App\Models\Sorter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
+use Illuminate\Http\Request;
+use App\Http\Controllers\SorterController;
 class SorterControllerTest extends TestCase
 {
     use RefreshDatabase;
@@ -17,4 +18,27 @@ class SorterControllerTest extends TestCase
         $sorter->refresh();
         $this->assertFalse($sorter->status!=$status);
     }
+
+    protected $controller;
+    protected function setUp():void
+    {
+        parent::setUp();
+        $this->controller = new SorterController();
+    }
+
+    public function test_search_returns_error_message_when_no_results()
+    {
+        $status=false;
+        Sorter::factory()->create(["name" => "Johnny Rockets","age"=>59,"email"=>"test@prueba.com","password"=>"password","status"=>$status]);
+        
+        $request = new Request(['q' => 'nonexistent']);
+        $response = $this->controller->search($request);
+        $this->assertInstanceOf(\Illuminate\View\View::class, $response);
+
+        $viewData = $response->getdata();
+      
+        $this->assertEmpty($response->getData()['sorters']);
+        $this->assertEquals('No se encontraron coincidencias', $viewData['error']);
+    }
 }
+
