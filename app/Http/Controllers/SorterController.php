@@ -155,7 +155,7 @@ class SorterController extends Controller
             return view('sorter.index', ['sorters' => $sorters, 'error' => 'No se encontraron coincidencias']);
         }
 
-        return view('sorter.index', ['sorters' => $sorters])->with();
+        return view('sorter.index', ['sorters' => $sorters]);
     }
 
     /**
