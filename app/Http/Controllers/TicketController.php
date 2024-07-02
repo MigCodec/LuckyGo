@@ -102,20 +102,21 @@ class TicketController extends Controller
         $code = substr($request->ticket_code,2);
        // $ticket_result = Ticket::where("code",$code)->first();
        $ticket_result = Ticket::with("lottery")->where("code",$code)->first();
-       if(!isset($ticket_result)){
-            return back()->with('ticket_error', 'el código ingresado no existe');
-       }
+        
+        if (!$ticket_result) {
+            return back()->with('ticket_error', 'El código ingresado no existe');
+        }
+
+        $lottery = $ticket_result->lottery;
+        if($lottery->status!=2){
+            return back()->with('lottery_error', 'El sorteo asociado a este billete aún no ha sido realizado');
+        }
+
         $ticket_result->win = $ticket_result->get_win();
         if($ticket_result->im_feeling_lucky){
             $ticket_result->win_im_feeling_lucky = $ticket_result->get_win_im_feeling_lucky();
         }
-        if (!$ticket_result) {
-            return back()->with('ticket_error', 'el código ingresado no existe');
-        }
-        $lottery = $ticket_result->lottery;
-        if($lottery->status!=2){
-            return back()->with('lottery_error', 'el sorteo asociado a este billete aún no ha sido realizado');
-        }
+       
         return view('ticket.review',[
             "ticket"=>$ticket_result,
             "lottery"=>$lottery,
