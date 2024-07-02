@@ -108,6 +108,11 @@
                 </div>
                 @endif
             </div>
+            @if(session("normal_numbers_len"))
+            <div style="background-color: #f56558; border: 10px solid #f56558; color: white; padding: 10px; border-radius: 5px; max-width: 300px; margin: 10px auto;">
+                {{session("normal_numbers_len")}}
+            </div>
+            @endif
             <!-- Submit and cancel buttons -->
             <button class="tooltip" type="submit" style="margin: 15px; background-color: #317C00; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; text-decoration: none; cursor: pointer;">
                 Confirmar

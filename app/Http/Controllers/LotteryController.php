@@ -46,21 +46,33 @@ class LotteryController extends Controller
         $lucky_numbers = $request->lucky_numbers;
         $sorter = Auth::guard("sorter")->user();
         $lottery = Lottery::where("id",$request->lottery_id)->first();
-        $lottery->winner_num_1=$normal_numbers[0];
-        $lottery->winner_num_2=$normal_numbers[1];
-        $lottery->winner_num_3=$normal_numbers[2];
-        $lottery->winner_num_4=$normal_numbers[3];
-        $lottery->winner_num_5=$normal_numbers[4];
+        if(isset($normal_numbers)){
+            if(count($normal_numbers)==5){
+                $lottery->winner_num_1=$normal_numbers[0];
+                $lottery->winner_num_2=$normal_numbers[1];
+                $lottery->winner_num_3=$normal_numbers[2];
+                $lottery->winner_num_4=$normal_numbers[3];
+                $lottery->winner_num_5=$normal_numbers[4];
+            }else{
+                return back()->with('normal_numbers_len', 'Ingrese solo 5 números');
+            }
+        }else{
+            return back()->with('normal_numbers_len', 'Ingrese solo 5 números');
+        }
         if(isset($lucky_numbers)){
-            $lottery->lucky_num_1=$lucky_numbers[0];
-            $lottery->lucky_num_2=$lucky_numbers[1];
-            $lottery->lucky_num_3=$lucky_numbers[2];
-            $lottery->lucky_num_4=$lucky_numbers[3];
-            $lottery->lucky_num_5=$lucky_numbers[4];
+            if(count($lucky_numbers)==5){
+                $lottery->lucky_num_1=$lucky_numbers[0];
+                $lottery->lucky_num_2=$lucky_numbers[1];
+                $lottery->lucky_num_3=$lucky_numbers[2];
+                $lottery->lucky_num_4=$lucky_numbers[3];
+                $lottery->lucky_num_5=$lucky_numbers[4];
+            }else{
+                return back()->with('normal_numbers_len', 'Ingrese solo 5 números');
+            }
         }
         $lottery->sorter_id=$sorter->id;
         $lottery->save();
-        return redirect()->route('lotteries.index')->with('successfully', 'Sorteo Ingresado');
+        return redirect()->route("lotteries.index")->with('successfully', 'Sorteo Ingresado');
         
     }
 
