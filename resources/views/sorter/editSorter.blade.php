@@ -35,10 +35,12 @@
             </div>
         </form>
         @if(session('message_conection_error'))
-        <p style="background-color: #f56558; color: #fff; border-radius: 0.375rem; font-size: 1rem; padding: 0.25rem; margin-top: 1rem; text-align: center;">{{ session('message_conection_error') }}</p>
+        <p style="background-color: #f56558; color: #fff; border-radius: 0.375rem; font-size: 1rem; padding: 0.25rem; margin-top: 1rem; text-align: center; max-width: 100%; display: inline-block;">{{ session('message_conection_error') }}</p>
         @endif
         @if(session('successfully'))
-        <p style="background-color: #2ECC71; color: #fff; border-radius: 0.7rem; font-size: 1rem; padding: 0.25rem;">{{session('successfully')}}</p>
+        <div style="text-align: center">
+            <p style="background-color: #2ECC71; color: #fff; border-radius: 0.7rem; font-size: 1rem; padding: 0.25rem; text-align: center; max-width: 100%; display: inline-block;">{{session('successfully')}}</p>
+        </div>
         @endif
     </div>
 </div>
