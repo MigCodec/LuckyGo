@@ -191,4 +191,5 @@ class SorterController extends Controller
 
     return redirect()->route('sorters.index')->with('success', 'Datos del sorteador actualizados correctamente.');
 }
+
 }

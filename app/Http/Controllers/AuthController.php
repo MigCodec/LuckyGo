@@ -120,8 +120,8 @@ class AuthController extends Controller
         
         // Show a messagge of error
         $messages=[
-            'password1.required' => 'debe ingresar su nueva contraseña para cambiar',
-            'password2.required' => 'debe repetir su nueva contraseña para cambiar'
+            'password1.required' => 'debe completar ambos campos asociados a la contraseña',
+            'password2.required' => 'debe completar ambos campos asociados a la contraseña'
         ];
 
         // Validate the request data
@@ -144,7 +144,7 @@ class AuthController extends Controller
 
         if($is_admin){
             $admin = Administrator::find($id);
-            $admin->password = Hash::make($request->password1);;
+            $admin->password = Hash::make($request->password1);
             $admin->save();
             return redirect()->route("login")->with("change_password_successfully","Cambio exitoso. Ingerese con su nueva contraseña.");
         }
