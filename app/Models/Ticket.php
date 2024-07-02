@@ -28,7 +28,7 @@ class Ticket extends Model
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo The relationship instance.
     */
     public function lottery(){
-        return $this->belongsTo(Lottery::class);
+        return $this->belongsTo(Lottery::class,'lottery_id');
     }
 
     /**

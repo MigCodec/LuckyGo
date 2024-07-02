@@ -13,6 +13,12 @@
         <label for="ticket_code" style="font-weight: bold;">Ingresa el código de tu billete:</label>
         <input type="text" id="ticket_code" name="ticket_code" required style="padding: 5px; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
         <button type="submit" style="padding: 5px 10px; background-color:#FFD70; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">Verificar</button>
+        @if(session('lottery_error'))
+        <p style="background-color: #f56558; color: #fff; border-radius: 0.375rem; font-size: 1rem; padding: 0.25rem; margin-top: 1rem; text-align: center;">{{ session('lottery_error') }}</p>
+        @endif
+        @if(session('ticket_error'))
+        <p style="background-color: #f56558; color: #fff; border-radius: 0.375rem; font-size: 1rem; padding: 0.25rem; margin-top: 1rem; text-align: center;">{{ session('ticket_error') }}</p>
+        @endif
     </form>
 
    
