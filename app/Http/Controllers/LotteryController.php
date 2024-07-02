@@ -7,7 +7,7 @@ use App\Models\Lottery;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreLotteryRequest;
 use App\Http\Requests\UpdateLotteryRequest;
-
+use Illuminate\Support\Facades\Auth;
 class LotteryController extends Controller
 {
     /**
@@ -15,9 +15,13 @@ class LotteryController extends Controller
      */
     public function index()
     {
-        $lotteries = Lottery::All();
-        $lottery = Lottery::firstOrFail();
-    
+        $lotteries = Lottery::with("sorter")->get();
+        foreach($lotteries as $lottery){
+            if($lottery->sorter!=null){
+                $lottery->sorter_name = $lottery->sorter->name;
+            }
+        }
+        dd($lotteries);
         return view("lottery.index",["lotteries"=> $lotteries]);
     }
 
@@ -38,7 +42,26 @@ class LotteryController extends Controller
      */
     public function store(StoreLotteryRequest $request)
     {
-        dd($request);
+        $validated = $request->validated(["lottery_id"=>"required","normal_numbers"=>"required","lucky_numbers"=>"required"]);
+        $normal_numbers = $request->normal_numbers;
+        $lucky_numbers = $request->lucky_numbers;
+        $sorter = Auth::guard("sorter")->user();
+        $lottery = Lottery::where("id",$request->lottery_id)->first();
+        $lottery->winner_num_1=$normal_numbers[0];
+        $lottery->winner_num_2=$normal_numbers[1];
+        $lottery->winner_num_3=$normal_numbers[2];
+        $lottery->winner_num_4=$normal_numbers[3];
+        $lottery->winner_num_5=$normal_numbers[4];
+        if(isset($lucky_numbers)){
+            $lottery->lucky_num_1=$lucky_numbers[0];
+            $lottery->lucky_num_2=$lucky_numbers[1];
+            $lottery->lucky_num_3=$lucky_numbers[2];
+            $lottery->lucky_num_4=$lucky_numbers[3];
+            $lottery->lucky_num_5=$lucky_numbers[4];
+        }
+        $lottery->sorter_id=$sorter->id;
+        $lottery->save();
+        return redirect()->route('lotteries.index')->with('successfully', 'Sorteo Ingresado');
         
     }
 

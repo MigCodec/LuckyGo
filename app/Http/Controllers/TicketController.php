@@ -100,17 +100,17 @@ class TicketController extends Controller
         ]);
 
         $code = substr($request->ticket_code,2);
-        $ticket_result = Ticket::where("code",$code)->first();
+       // $ticket_result = Ticket::where("code",$code)->first();
+       $ticket_result = Ticket::with("lottery")->first();
         $ticket_result->win = $ticket_result->get_win();
         if($ticket_result->im_feeling_lucky){
-            $ticket_result->win_feeling_lucky = $ticket_result->get_win_im_feeling_lucky();
+            $ticket_result->win_im_feeling_lucky = $ticket_result->get_win_im_feeling_lucky();
         }
-        dd($ticket_result);
 
         if (!$ticket_result) {
             return back()->with('error', 'No se encontró ningún billete con ese código.');
         }
-        return view('ticket.review',["ticket"=>$ticket_result]);
+        return view('ticket.review',["ticket"=>$ticket_result,"lottery"=>$ticket_result->lottery]);
         
 
     

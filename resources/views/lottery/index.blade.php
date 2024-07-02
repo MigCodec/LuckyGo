@@ -66,7 +66,7 @@ This view displays a list of lotteries in a table format.-->
                 @endif
             </td>
             <td>
-                {{$lottery->register_by}}
+                {{$lottery->sorter_name}}
             </td>
             </tr>
             @endforeach

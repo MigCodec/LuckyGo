@@ -23,7 +23,7 @@ class Ticket extends Model
     
     /*
     * This method establishes a "belongs to" relationship indicating that
-    * each sorter is associated with a single lottery.
+    * each ticket is associated with a single lottery.
     *
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo The relationship instance.
     */
@@ -73,5 +73,11 @@ class Ticket extends Model
             }
         }
         return false;
+    }
+    public function get_amount(){
+
+    }
+    public function get_amount_lucky(){
+
     }
 }
