@@ -129,17 +129,11 @@ class LotteryController extends Controller
     public static function getMondayAndSundayOfThisWeek() {
         // Set the timezone to avoid discrepancies
         date_default_timezone_set('America/Santiago');
-    
-        // Get the day of the week (0 for Sunday, 1 for Monday, etc.)
-        $dayOfWeek = date('w');
-    
-        // Calculate the date for Monday of this week
-        $monday = date('Y-m-d', strtotime('-' . $dayOfWeek . ' days'));
-    
-        // Calculate the date for Sunday of this week
-        $sunday = date('Y-m-d', strtotime('+' . (6 - $dayOfWeek) . ' days'));
-    
-        return ['monday' => $monday, 'sunday' => $sunday];
+            // Obtén la fecha actual
+        $today = Carbon::now();
+        $monday = $today->startOfWeek(Carbon::MONDAY)->toDateString();
+        $sunday = $today->endOfWeek(Carbon::SUNDAY)->toDateString();
+        return ['monday' => $monday, 'sunday' => $sunday];  
     }
     
 }
