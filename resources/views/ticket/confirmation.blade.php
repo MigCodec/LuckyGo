@@ -18,8 +18,14 @@
             <input type="hidden" name="im_feeling_lucky" value="{{ $im_feeling_lucky }}">
             <input type="hidden" name="price" value="{{ $price }}">
              <!-- Button to continue with the purchase -->
-            <button style="margin: 15px; background-color: #328000; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;" type="submit" >Continuar</button>
-            <a href="{{ route('ticket.index') }}" style="margin: 15px; background-color: #EC2C00; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; text-decoration: none;">Cancelar</a>
+            <button class="tooltip" style="margin: 15px; background-color: #328000; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;" type="submit" >
+                Continuar
+                <span class="tooltip_text">Confirme compra</span>
+            </button>
+            <a href="{{ route('ticket.index') }}" class="tooltip" style="margin: 15px; background-color: #EC2C00; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; text-decoration: none;">
+                Cancelar
+                <span class="tooltip_text">Cancele compra</span>
+            </a>
         </form>
     </div>
 </div>
