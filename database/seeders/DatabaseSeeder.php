@@ -33,11 +33,11 @@ class DatabaseSeeder extends Seeder
             'password'=>Hash::make('Luckygo23',
             )]);
         Lottery::factory()->create([
-            "date"=>Carbon::parse("2024-05-19"),
+            "date"=>Carbon::parse("2024-06-30"),
             'id'=>1,"status"=>0,
             ] );
         Lottery::factory()->create([
-                "date"=>Carbon::parse("2024-05-19"),
+                "date"=>Carbon::parse("2024-07-7"),
                 'id'=>2,"status"=>0,
                 ] );
         Ticket::factory()->create([
@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
             "number_4"=>4,
             "number_5"=>5,
             "im_feeling_lucky"=>0,
-            "date"=>Carbon::parse("2024-05-26"),
+            "date"=>Carbon::parse("2024-06-29"),
             "lottery_id"=>1,
         ]);
         Ticket::factory()->create([
@@ -61,7 +61,7 @@ class DatabaseSeeder extends Seeder
             "number_4"=>4,
             "number_5"=>5,
             "im_feeling_lucky"=>1,
-            "date"=>Carbon::parse("2024-05-23"),
+            "date"=>Carbon::parse("2024-07-05"),
             "lottery_id"=>2,
         ]);
         Ticket::factory()->create([
@@ -73,7 +73,7 @@ class DatabaseSeeder extends Seeder
             "number_4"=>4,
             "number_5"=>5,
             "im_feeling_lucky"=>1,
-            "date"=>Carbon::parse("2024-05-23"),
+            "date"=>Carbon::parse("2024-07-06"),
             "lottery_id"=>2,
         ]);
     }   
