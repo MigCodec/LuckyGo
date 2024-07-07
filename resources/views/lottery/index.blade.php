@@ -33,7 +33,7 @@ This view displays a list of lotteries in a table format.-->
             @foreach($lotteries as $lottery)
             <tr>
             <td>
-               {{$lottery->date_created}}
+                {{ ucfirst(\Carbon\Carbon::parse($lottery->date)->translatedFormat('l d \d\e F')) }}
             </td>
             <td>
                 {{number_format($lottery->count_total_tickets,0,',','.')}}
