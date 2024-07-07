@@ -1,6 +1,5 @@
 @extends('includes.navbar')
 @section('content')
-
 <!--
 This view displays a list of lotteries in a table format.-->
 <title>Sorteos</title>
@@ -34,7 +33,7 @@ This view displays a list of lotteries in a table format.-->
             @foreach($lotteries as $lottery)
             <tr>
             <td>
-               {{$lottery->date}}
+               {{$lottery->date_created}}
             </td>
             <td>
                 {{number_format($lottery->count_total_tickets,0,',','.')}}
@@ -66,7 +65,9 @@ This view displays a list of lotteries in a table format.-->
                 @endif
             </td>
             <td>
-                {{$lottery->sorter_name}}
+                @if($lottery->sorter_name)
+                {{$lottery->sorter_name." ".$lottery->formated_date}}
+                @endif
             </td>
             </tr>
             @endforeach

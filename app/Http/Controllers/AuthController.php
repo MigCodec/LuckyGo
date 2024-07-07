@@ -142,12 +142,12 @@ class AuthController extends Controller
             $admin = Administrator::find($id);
             $admin->password = Hash::make($request->password1);
             $admin->save();
-            return redirect()->route("login")->with("change_password_successfully","Cambio exitoso. Ingerese con su nueva contraseña.");
+            return redirect()->route("login")->with("change_password_successfully","Cambio exitoso. Ingrese con su nueva contraseña.");
         }
         
         $sorter = Sorter::find($id);
         $sorter->password = Hash::make($request->password1);
         $sorter->save();
-        return redirect()->route("login")->with("change_password_successfully","Cambio exitoso. Ingerese con su nueva contraseña.");
+        return redirect()->route("login")->with("change_password_successfully","Cambio exitoso. Ingrese con su nueva contraseña.");
     }
 }

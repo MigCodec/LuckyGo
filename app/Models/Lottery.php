@@ -52,16 +52,21 @@ class Lottery extends Model
         return $this->hasMany(Ticket::class)->where('im_feeling_lucky',0);
     }
     public function getSumTotalTicketsAttribute(){
-        return $this->tickets()->sum('price');
+        $count_normal = $this->tickets()->count();
+        $count_lucky = $this->lucky_tickets()->count();
+        return $count_normal*2000+$count_lucky*1000;
     }
     public function getCountTotalTicketsAttribute(){
         return $this->tickets()->count();
     }
     public function getSumPriceNormalTicketsAttribute(){
-        return $this->normal_tickets()->sum('price')??0;
+        $count_normal = $this->normal_tickets()->count()??0;
+        $count_lucky = $this->lucky_tickets()->count()??0;
+        return $count_normal*2000+$count_lucky*2000;
     }
     public function getSumPriceLuckyTicketsAttribute(){
-        return $this->lucky_tickets()->sum('price')??0;
+        $count = $this->lucky_tickets()->count()??0;
+        return $count*1000;
     }
     public function getCountWinTicketsAttribute(){
         return $this->tickets()->

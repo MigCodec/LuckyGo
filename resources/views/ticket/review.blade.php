@@ -1,7 +1,9 @@
 @extends('includes.navbar')
 
 @section('title', 'Revisar Ticket')
-
+@php
+    use Carbon\Carbon;
+@endphp
 
 @section('content')
 <title>Ver Billetes</title>
@@ -30,7 +32,7 @@
                     <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0;">Números Jugados</th>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid #ccc; padding: 10px;">{{ $ticket->date }}</td>
+                    <td style="border: 1px solid #ccc; padding: 10px;">{{Carbon::parse($ticket->date)->format('d/m/Y')}}</td>
                     <td style="border: 1px solid #ccc; padding: 10px;">
                         <b>
                             <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $ticket->number_1 }}</span>
@@ -52,7 +54,7 @@
                 </tr>
                 <tr>
                     <td style="border: 1px solid #ccc; padding: 20px;"> 
-                        <b>{{ $ticket->lottery->date }}</b></td>
+                        <b>{{Carbon::parse($lottery->date)->format('d/m/Y') }}</b></td>
                     <td style="border: 1px solid #ccc; padding: 20px;">
                        <b> <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->winner_num_1 }} </span>
                        <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;"> {{ $lottery->winner_num_2 }} </span>
@@ -70,27 +72,28 @@
                     </td>
                 </tr>
             </table>
-
-            @if( $ticket->win )
-                <div style="text-align: center; margin-top: 20px;">
-                    <h3 style="color: green;">¡Tienes premio!</h3>
-                    <table style="margin: 0 auto; border-collapse: collapse; width: 80%;">
+            @if($ticket->win || $ticket->win_im_feeling_lucky )
+            <h3 style="text-align: center; color: #7D3C98; font-weight: bold;">¡Tienes Premio!</h3>
+            <table style="margin: 0 auto; border-collapse: collapse; width: 80%;">
                         <tr>
                             <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0;">Sorteo principal</th>
                             <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0;">"Tendré Suerte"</th>
                         </tr>
                         <tr>
-                            <td style="border: 1px solid #ccc; padding: 10px;">{{$jackpot}}</td>
-                            @if( $ticket->win_im_feeling_lucky )
-                                <td style="border: 1px solid #ccc; padding: 10px;">{{$lucky_jackpot}}</td>
+                            @if($ticket->win)
+                            <td style="border: 1px solid #ccc; padding: 10px;">${{number_format($jackpot,0,',','.')}}</td>
                             @else
-                                <td style="border: 1px solid #ccc; padding: 10px; color: #7D3C98; font-weight: bold;">Sin premio</td>
+                            <td style="border: 1px solid #ccc; padding: 10px;font-weight: bold;">Sin Premio</td>
+                            @endif
+                            @if( $ticket->win_im_feeling_lucky )
+                                <td style="border: 1px solid #ccc; padding: 10px;">${{number_format($lucky_jackpot,0,',','.')}}</td>
+                            @else
+                                <td style="border: 1px solid #ccc; padding: 10px; font-weight: bold;">Sin Premio</td>
                             @endif
                         </tr>
-                    </table>
-                </div>
+            </table>
             @else
-                <h3 style="text-align: center; color: #7D3C98; font-weight: bold;">Sin Premio</h3>
+            <h3 style="text-align: center; color: #7D3C98; font-weight: bold;">Sin Premio</h3>
             @endif
         </div>
     @endif

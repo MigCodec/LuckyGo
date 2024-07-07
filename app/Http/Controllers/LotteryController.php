@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreLotteryRequest;
 use App\Http\Requests\UpdateLotteryRequest;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 class LotteryController extends Controller
+
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +19,15 @@ class LotteryController extends Controller
     {
         $lotteries = Lottery::with("sorter")->get();
         foreach($lotteries as $lottery){
+            $date_carbon = Carbon::parse($lottery->date);
+            $lottery->date_created = $date_carbon->format('d/m/Y');
             if($lottery->sorter!=null){
                 $lottery->sorter_name = $lottery->sorter->name;
+                Carbon::setLocale('es');
+                $fechaCarbon = Carbon::parse($lottery->updated_at);
+                $formateada = $fechaCarbon->format('d/m/Y H:i');
+                $lottery->formated_date = $formateada;
+
             }
         }
         return view("lottery.index",["lotteries"=> $lotteries]);
