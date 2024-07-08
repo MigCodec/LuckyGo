@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <td>
-                    {{$lottery->date}}
+                    {{ ucfirst(\Carbon\Carbon::parse($lottery->date)->translatedFormat('l d \d\e F')) }}
                 </td>
                 <td>
                     {{number_format($lottery->count_total_tickets,0,',','.')}}
@@ -47,7 +47,7 @@
     </div>
 
     <div style="display: flex; justify-content: center; margin-top: 20px;">
-        <form method="POST" action="{{route('lotteries.store')}}" style="text-align: center;">
+        <form method="POST" action="{{route('lotteries.store')}}" class="confirmedform" style="text-align: center;">
             @csrf
             <input name="lottery_id" type="hidden" value="{{$lottery->id}}"/>
             <!-- Select lucky numbers -->
