@@ -69,7 +69,7 @@ class TicketController extends Controller
         $lottery = Lottery::where('date',$restrict_dates['sunday'])->first();
         if($lottery==null){
             $lottery = Lottery::firstOrCreate([
-                'date'=>$restrict_dates['sunday'],
+                'date'=>$restrict_dates['sunday']." 23:59:59",
                 'status'=>0,
             ]);
         }
