@@ -20,7 +20,7 @@ This view displays a list of lotteries in a table format.-->
             @foreach($lotteries as $lottery)
             <tr>
                 <td>{{ ucfirst(\Carbon\Carbon::parse($lottery->date)->translatedFormat('l d \d\e F')) }}</td>
-                <td>${{ number_format($lottery->count_total_tickets, 0, ',', '.') }}</td>
+                <td>{{ number_format($lottery->count_total_tickets, 0, ',', '.') }}</td>
                 <td>${{ number_format($lottery->sum_price_normal_tickets, 0, ',', '.') }}</td>
                 <td>${{ number_format($lottery->sum_price_lucky_tickets, 0, ',', '.') }}</td>
                 <td>${{ number_format($lottery->sum_total_tickets, 0, ',', '.') }}</td>
