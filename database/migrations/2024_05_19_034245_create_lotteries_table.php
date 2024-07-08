@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('lotteries', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('date');
+            $table->datetime('date');
             $table->integer('status');
             $table->integer('winner_num_1')->default(0);
             $table->integer('winner_num_2')->default(0);
