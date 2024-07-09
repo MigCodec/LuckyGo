@@ -32,7 +32,7 @@
                     <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0;">Números Jugados</th>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid #ccc; padding: 10px;">{{Carbon::parse($ticket->date)->format('d/m/Y')}}</td>
+                    <td style="border: 1px solid #ccc; padding: 10px;">{{Carbon::parse($ticket->created_at)->format('d/m/Y H:i:s')}}</td>
                     <td style="border: 1px solid #ccc; padding: 10px;">
                         <b>
                             <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $ticket->number_1 }}</span>
@@ -54,7 +54,7 @@
                 </tr>
                 <tr>
                     <td style="border: 1px solid #ccc; padding: 20px;"> 
-                        <b>{{Carbon::parse($lottery->date)->format('d/m/Y') }}</b></td>
+                        <b>{{Carbon::parse($lottery->date)->format('d/m/Y H:i') }}</b></td>
                     <td style="border: 1px solid #ccc; padding: 20px;">
                        <b> <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->winner_num_1 }} </span>
                        <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;"> {{ $lottery->winner_num_2 }} </span>
@@ -63,12 +63,14 @@
                        <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->winner_num_5 }} </span> </b>
                     </td>
                     <td style="border: 1px solid #ccc; padding: 20px;">
+                        @if($lottery->lucky_num_1!=0)
                         <b><span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->lucky_num_1 }} </span>
                         <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->lucky_num_2 }} </span>
                         <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->lucky_num_3 }} </span>
                         <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->lucky_num_4 }} </span>
                         <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->lucky_num_5 }} </span>
                         </b>
+                        @endif
                     </td>
                 </tr>
             </table>
