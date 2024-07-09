@@ -14,7 +14,7 @@
         @csrf
         <label for="ticket_code" style="font-weight: bold;">Ingresa el código de tu billete:</label>
         <input type="text" id="ticket_code" name="ticket_code" required style="padding: 5px; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
-        <button type="submit" style="padding: 5px 10px; background-color:#FFD700; border: 1px solid #FFD700; border-radius: 4px; cursor: pointer;font-weight: bold;">Verificar</button>
+        <button type="submit" style="padding: 5px 10px; border-radius: 4px; cursor: pointer;">Verificar</button>
         </form>
         @if(session('lottery_error'))
         <p style="background-color: #f56558; color: #fff; border-radius: 0.375rem; font-size: 1rem; padding: 0.25rem; margin-top: 1rem; text-align: center; max-width: 100%; display: inline-block;">{{ session('lottery_error') }}</p>
