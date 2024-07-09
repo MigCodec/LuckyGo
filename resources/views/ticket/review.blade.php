@@ -53,8 +53,8 @@
                     <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0;">Números Ganadores "Tendré Suerte"</th>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid #ccc; padding: 20px;"> 
-                        <b>{{Carbon::parse($lottery->date)->format('d/m/Y H:i') }}</b></td>
+                    <td style="border: 1px solid #ccc; padding: 20px;">
+                        <b>{{Carbon::parse($lottery->updated_at)->format('d/m/Y H:i') }}</b></td>
                     <td style="border: 1px solid #ccc; padding: 20px;">
                        <b> <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;">{{ $lottery->winner_num_1 }} </span>
                        <span style= "display: inline-block; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50%; background-color: #ffffff; border: 1px solid; cursor: pointer;"> {{ $lottery->winner_num_2 }} </span>
